@@ -4,7 +4,8 @@ This repository contains solutions to machine coding problems related to low-lev
 
 ## Problem List
 
-- Problem 1: Design Parking Lot
+- Problem 1: [Design Parking Lot](https://github.com/abhaypaswan/lld-python/tree/main/Design_Parking_Lot)
+![Parking Lot LLD](https://firebasestorage.googleapis.com/v0/b/techprimer-fbfe6.appspot.com/o/lld%2Fdesign_parking_lot.svg?alt=media&token=17f76ed9-4ca9-4d3e-a3b5-9897b8245f3e)
 
 ## Support
 
