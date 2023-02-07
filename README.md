@@ -1,6 +1,6 @@
 # Low Level Design - Python
 
-This repository contains solutions to machine coding problems related to low-level discovery (LLD) in Python. These problems are commonly asked in technical interviews to assess a candidate's knowledge of LLD and their proficiency in Python.
+This repository contains solutions to machine coding problems related to low-level design (LLD) in Python. These problems are commonly asked in technical interviews to assess a candidate's knowledge of LLD and their proficiency in Python.
 
 ## Problem List
 
