@@ -20,15 +20,15 @@ The goal of this project is to design a parking lot that can efficiently manage 
 A driver enters the parking lot with a red car and registration number ABC123, and is assigned to parking spot number 1. Another driver enters the parking lot with a blue car and registration number DEF456, and is assigned to parking spot number 2. The system stores the color information of each car (red and blue) and the registration number along with the respective parking spot number.
 
 ## Sample Input/Output
-**Input** park_vehicle ABC-123 Red TwoWheeler
+**Input** `park_vehicle ABC-123 Red TwoWheeler`     
 **Output**  :
 Parking Spot: 0
 
-**Input** park_vehicle DEF-456 White FourWheeler
+**Input** `park_vehicle DEF-456 White FourWheeler`       
 **Output**  :
 Parking Spot: 10
 
-**Input** list_all_parked_vehicles
+**Input** `list_all_parked_vehicles`      
 **Output**  :
 Registration Number: ABC-123
 Assigned Spot Number: 0
@@ -40,18 +40,18 @@ Assigned Spot Number: 10
 Vehicle Type: FourWheeler
 Color: White
 
-**Input** free_parking_spot 0 TwoWheeler
+**Input** : `free_parking_spot 0 TwoWheeler`     
 **Output**  :
 Parking spot {self.spot_number} is now available!
 
-**Input** list_all_parked_vehicles
+**Input** : `list_all_parked_vehicles`     
 **Output**  :
 Registration Number: DEF-456
 Assigned Spot Number: 10
 Vehicle Type: FourWheeler
 Color: White
 
-**Input** get_vehicles_by_color White
+**Input** : `get_vehicles_by_color White`     
 **Output**  :
 TwoWheeler of White color is:
 FourWheeler of White color is:
@@ -59,33 +59,41 @@ RegistrationNo: DEF-456
 Assigned Spot Number: 10
 HUV of White color is:
 
-**Input** get_vehicles_by_registration_no ABC-123
+**Input** : `get_vehicles_by_registration_no ABC-123`      
 **Output**  :
 No vehicle found with registration number: ABC-123
 
-**Input** get_vehicles_by_registration_no DEF-456
+**Input** : `get_vehicles_by_registration_no DEF-456`      
 **Output**  :
 Registration Number: DEF-456
 Assigned Spot Number: 10
 Color: White
 
-**Input** list_all_parked_vehicles
+**Input** : `list_all_parked_vehicles`      
 **Output**  :
 Registration Number: DEF-456
 Assigned Spot Number: 10
 Vehicle Type: FourWheeler
 Color: White
 
-**Input** add_parking_spot 13 TwoWheeler
+**Input** : `add_parking_spot 13 TwoWheeler`      
 **Output**  :
 
-**Input** remove_parking_spot 13 TwoWheeler
+**Input** : `remove_parking_spot 13 TwoWheeler`     
 **Output**  :
 Available parking spots: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '13']
 After removing spot(13) from parking spots: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
-**Input** exit
+**Input** : `exit`      
 **Output**  :
+
+## Running Instructions
+To run the Design Parking Lot project, follow the below steps:
+1. Open a terminal/command prompt.
+2. Navigate to the project directory by running the following command:
+```cd Design_Parking_Lot/src```
+3. Run the following command to start the program:
+```python3 main.py```
 
 # Contribution Guidelines
 We welcome contributions to this project. If you are interested in contributing, here are a few guidelines to follow:
