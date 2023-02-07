@@ -1,0 +1,12 @@
+park_vehicle ABC-123 Red TwoWheeler
+park_vehicle DEF-456 White FourWheeler
+list_all_parked_vehicles
+free_parking_spot 0 TwoWheeler
+list_all_parked_vehicles
+get_vehicles_by_color White 
+get_vehicles_by_registration_no ABC-123
+get_vehicles_by_registration_no DEF-456
+list_all_parked_vehicles
+add_parking_spot 13 TwoWheeler
+remove_parking_spot 13 TwoWheeler
+exit
