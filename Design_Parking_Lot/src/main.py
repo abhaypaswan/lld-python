@@ -24,8 +24,6 @@ def main():
     parking_lot.create_parking_lot()
     with open("input.txt", "r") as file:
         for line in file:
-            print("**Input** " + line.strip())
-            print("**Output**  :")
             command_str = line.strip() # to remove new_line character
             command = Commands(command=command_str,
                         entrance_gate=parking_lot.entrance_gate, 
