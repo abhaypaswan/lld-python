@@ -78,7 +78,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-TODO
+Speaking for myself, it is frustrating to try to find helpful resources on low-level design problems online. The information is often scattered across various websites, forums, and blogs, which makes it difficult to find a comprehensive and structured learning experience unlike what is available for DSA. So that's why I felt motivated to create a [platform](https://scale.algostreak.com/) where users can find low-level designs and their implementations side by side. 
 ![Demo App Screenshot](https://firebasestorage.googleapis.com/v0/b/techprimer-fbfe6.appspot.com/o/app_demo.png?alt=media&token=95a9b08e-badc-443b-a661-849a5da51e6f)
 
 ### Built With
