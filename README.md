@@ -61,18 +61,11 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
+      <a href="#low-level-design-problems-list">LOW LEVEL DESIGN PROBLEMS LIST</a>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -86,25 +79,47 @@ Speaking for myself, it is frustrating to try to find helpful resources on low-l
 * [![Flutter][Flutter]][Flutter-url]
 * [![Dart][Dart]][Dart-url]
 
-# Low Level Design - Python
-
-This repository contains solutions to machine coding problems related to low-level design (LLD) in Python. These problems are commonly asked in technical interviews to assess a candidate's knowledge of LLD and their proficiency in Python.
-
-## Problem List
+<!-- LOW LEVEL DESIGN PROBLEMS LIST -->
+## LOW LEVEL DESIGN PROBLEMS LIST
 
 - Problem 1: [Design Parking Lot](https://github.com/abhaypaswan/lld-python/tree/main/Design_Parking_Lot)
 ![Parking Lot LLD](https://firebasestorage.googleapis.com/v0/b/techprimer-fbfe6.appspot.com/o/lld%2Fdesign_parking_lot.svg?alt=media&token=17f76ed9-4ca9-4d3e-a3b5-9897b8245f3e)
 
-## Support
-
-For any issues or support, please open an issue on this repository.
-
+<!-- CONTRIBUTING -->
 ## Contributing
 
-If you have a problem and its solution that you would like to share, please fork the repository and create a pull request with your changes.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- CONTACT -->
+## Contact
+
+Abhay Paswan - work.abhaypaswan@gmail.com
+
+Project Link: [https://github.com/github_username/repo_name](https://github.com/abhaypaswan/lld-python)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
