@@ -63,8 +63,8 @@
     <li>
       <a href="#low-level-design-problems-list">LOW LEVEL DESIGN PROBLEMS LIST</a>
       <ul>
-        <li><a href="#design-parking-lot">Design Parking Lot</a></li>
-        <li><a href="#snake-and-ladder">Snake and Ladder</a></li>
+        <li><a href="#problem-1-design-parking-lot">Design Parking Lot</a></li>
+        <li><a href="#problem-2-snake-and-ladder">Snake and Ladder</a></li>
       </ul>
     </li>
     <li><a href="#contributing">Contributing</a></li>
