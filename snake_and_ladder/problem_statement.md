@@ -211,3 +211,11 @@ Bob current position: 100
 
 Player Bob has won the game!
 ```
+
+## Running Instructions
+To run the Snake and Ladder project, follow the below steps:
+1. Open a terminal/command prompt.
+2. Navigate to the project directory by running the following command:
+```cd snake_and_ladder/src```
+3. Run the following command to start the program:
+```python3 main.py```
