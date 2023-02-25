@@ -84,7 +84,7 @@ Speaking for myself, it is frustrating to try to find helpful resources on low-l
 
 ### Problem 1: [Design Parking Lot](https://github.com/abhaypaswan/lld-python/tree/main/Design_Parking_Lot)
 Design a parking lot that can efficiently manage the parking and retrieval of vehicles, with the added feature of being able to identify the color of each vehicle and the registration number. The parking lot should also be able to handle different types of vehicles, such as cars, motorcycles, and buses. [(Read More...)](https://github.com/abhaypaswan/lld-python/blob/main/Design_Parking_Lot/problem-statement.md)
-![Parking Lot LLD](https://github.com/abhaypaswan/lld-python/blob/main/Design_Parking_Lot/design_parking_lot.png)
+![Parking Lot LLD](https://github.com/abhaypaswan/lld-python/blob/main/Design_Parking_Lot/design_parking_lot_dark.png)
 
 ### Problem 2: [Snake and Ladder](https://github.com/abhaypaswan/lld-python/tree/main/snake_and_ladder)
 Design a Snake and Ladder game with the following requirements:
@@ -93,8 +93,8 @@ Design a Snake and Ladder game with the following requirements:
 2. The game can be played with either a fair dice or a crooked dice that favors generating even numbers over odd ones.
 3. The number of players in the game should be decided by the user at the start of the game.
 4. Snakes and Ladders should be randomly placed on the board.
-5. Snakes and Ladders should not form a loop and the end point of a snake or ladder should not be the starting point for any other snake or ladder. [(Read More...)](https://github.com/abhaypaswan/lld-python/blob/main/snake_and_ladder/problem-statement.md)
-![Snake and Ladder LLD](https://github.com/abhaypaswan/lld-python/blob/main/snake_and_ladder/snakeladder_lld.png)
+5. Snakes and Ladders should not form a loop and the end point of a snake or ladder should not be the starting point for any other snake or ladder. [(Read More...)](https://github.com/abhaypaswan/lld-python/blob/main/snake_and_ladder/problem_statement.md)
+![Snake and Ladder LLD](https://github.com/abhaypaswan/lld-python/blob/main/snake_and_ladder/snakeladder_lld_dark.png)
 <!-- CONTRIBUTING -->
 ## Contributing
 
