@@ -7,27 +7,44 @@ from model.snake import Snake
 # SnakeLadder class representing the complete game
 class SnakeLadder:
     # Initialization method to create a board, dice, and player
-    def __init__(self, ladders, snakes):
+    def __init__(self, ladders, snakes, player_names, dice_strategy='fair', max_position=100, start_position=1):
         self.board = Board(ladders, snakes)
-        self.dice = Dice()
-        self.player = Player(self.board)
+        self.dice = Dice(dice_strategy)
+        self.players = []
+        for player in player_names:
+            self.players.append(Player(self.board, player))
 
     # Method to play the game
     def play(self):
-        while not self.player.has_won():
+        player_num = 0
+        while 1:
+            player = self.players[player_num]
             dice_roll = self.dice.roll()
-            self.player.move(dice_roll)
+
+            print(f"{player.name}'s turn (rolling dice...)")
+            print(f"{player.name} rolled {dice_roll}")
+
+            player.move(dice_roll)
+            print('\n')
+
+            if player.has_won():
+                print(f'Player {player.name} has won the game!')
+                return
+            player_num += 1
+            player_num = player_num % len(self.players)
         
-        print("You won!")
 
 
 """
-    Here is the sample inputs to create a board, if you want you can take these inputs from users.
+   For the sake of simplicity and to focus more on Design Patterns, we have used sample input. 
+   However, if you wish, you can modify the input and output format according to your requirements.
 """
-max_position = 100 
-start_position = 1
-no_of_players = 2
-no_of_dice = 1
+num_players = int(input("How many players are playing? "))
+player_names = []
+for i in range(num_players):
+    name = input("Enter player " + str(i+1) + " name: ")
+    player_names.append(name)
+print("\n")
 
 # Assumption: Ladders and Snakes won't make a loop.
 ladders = {
@@ -55,5 +72,5 @@ snakes = {
 
 
 # play the game
-game = SnakeLadder(ladders, snakes)
+game = SnakeLadder(ladders, snakes, player_names, 'crooked')
 game.play()

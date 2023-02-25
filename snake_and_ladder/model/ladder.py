@@ -7,4 +7,5 @@ class Ladder:
     
     # Method to return the end position of the ladder
     def get_end_position(self):
+        print(f"(climbs a ladder from {self.start} to {self.end})")
         return self.end
