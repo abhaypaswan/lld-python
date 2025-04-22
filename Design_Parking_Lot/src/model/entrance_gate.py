@@ -5,11 +5,10 @@ from model.vehicle import *
 class EntranceGate:
     def __init__(self, parking_spot_manager_factory: ParkingSpotManagerFactory):
         self.parking_spot_manager_factory = parking_spot_manager_factory
-    
+        self.supported_vehicle_types = ["TwoWheeler", "FourWheeler", "HUV"]
+
     def find_parking_spot(self, vehicle_type, strategy="default"):
-        parking_spot_manager = self.parking_spot_manager_factory.get_spot_manager(vehicle_type)
-        parking_spot = parking_spot_manager.find_parking_spot(strategy=strategy)
-        return parking_spot
+        return self._get_manager(vehicle_type).find_parking_spot(strategy=strategy)
 
     def generate_ticket(self, color, registration_no, vehicle_type, strategy="default"):
         vehicle = Vehicle().create_vehicle(color=color, registration_no=registration_no, vehicle_type=vehicle_type)
@@ -20,39 +19,67 @@ class EntranceGate:
 
     def park_vehicle(self, color, registration_no, vehicle_type):
         vehicle = Vehicle().create_vehicle(color=color, registration_no=registration_no, vehicle_type=vehicle_type)
-        parking_spot_manager = self.parking_spot_manager_factory.get_spot_manager(vehicle_type)
-        parking_spot_manager.park_vehicle(vehicle)
+        self._get_manager(vehicle_type).park_vehicle(vehicle)
 
     def get_vehicles_by_color(self, color, vehicle_type="all"):
-        if vehicle_type == "all":
-            self.get_vehicles_by_color(color, vehicle_type="TwoWheeler")
-            self.get_vehicles_by_color(color, vehicle_type="FourWheeler")
-            self.get_vehicles_by_color(color, vehicle_type="HUV")
-        elif vehicle_type in ['TwoWheeler', 'FourWheeler', 'HUV']:
-            spots = self.parking_spot_manager_factory.get_spot_manager(vehicle_type).get_spots_by_vehicle_color(color)
-            print(f'{vehicle_type} of {color} color is:')
-            for spot in spots:
-                print(f'RegistrationNo: {spot.vehicle.get_vehicle_registration_no()}')
-                print(f'Assigned Spot Number: {spot.spot_number}')
-        else:
-            print('Wrong vehicle type')
+        vehicle_types = self.supported_vehicle_types if vehicle_type == "all" else [vehicle_type]
+
+        for v_type in vehicle_types:
+            manager = self._get_manager(v_type)
+            spots = manager.get_spots_by_vehicle_color(color)
+            if spots:
+                print(f'\n{v_type}s with color "{color}":')
+                for spot in spots:
+                    self._print_vehicle_info(spot)
 
     def get_vehicle_by_registration_no(self, registration_no):
-        for vehicle_type in ['TwoWheeler', 'FourWheeler', 'HUV']:
-            spot = self.parking_spot_manager_factory.get_spot_manager(vehicle_type).get_spot_by_vehicle_registration_no(registration_no)
+        for v_type in self.supported_vehicle_types:
+            spot = self._get_manager(v_type).get_spot_by_vehicle_registration_no(registration_no)
             if spot:
-                print(f'Registration Number: {spot.vehicle.get_vehicle_registration_no()}')
-                print(f'Assigned Spot Number: {spot.spot_number}')
-                print(f'Color: {spot.vehicle.get_vehicle_color()}')
-                return 
+                print(f'\nVehicle found in {v_type}:')
+                self._print_vehicle_info(spot)
+                return
         print(f'No vehicle found with registration number: {registration_no}')
         
     def list_all_parked_vehicles(self):
-        for vehicle_type in ['TwoWheeler', 'FourWheeler', 'HUV']:
-            spots = self.parking_spot_manager_factory.get_spot_manager(vehicle_type).list_all_parked_spots()
+        print("\nList of all parked vehicles:")
+        for v_type in self.supported_vehicle_types:
+            spots = self._get_manager(v_type).list_all_parked_spots()
             for spot in spots:
-                print(f'Registration Number: {spot.vehicle.get_vehicle_registration_no()}')
-                print(f'Assigned Spot Number: {spot.spot_number}')
-                print(f'Vehicle Type: {spot.vehicle.get_vehicle_type()}')
-                print(f'Color: {spot.vehicle.get_vehicle_color()}')
-                print('')
+                self._print_vehicle_info(spot)
+
+    def get_report_data(self):
+        report = {}
+
+        for vehicle_type in self.supported_vehicle_types:
+            manager = self.parking_spot_manager_factory.get_spot_manager(vehicle_type)
+            parked = manager.list_all_parked_spots()
+            total = manager.total_spots
+            available = manager.available_spots
+            report[vehicle_type] = {
+                'total_spots': total,
+                'available_spots': available,
+                'occupied_spots': total - available,
+                'vehicles': [
+                    {
+                        'registration_no': spot.vehicle.get_vehicle_registration_no(),
+                        'color': spot.vehicle.get_vehicle_color(),
+                        'spot_number': spot.spot_number
+                    } for spot in parked
+                ]
+            }
+
+        return report
+
+    # --- Helper methods ---
+    def _get_manager(self, vehicle_type):
+        if vehicle_type not in self.supported_vehicle_types:
+            raise ValueError(f"Unsupported vehicle type: {vehicle_type}")
+        return self.parking_spot_manager_factory.get_spot_manager(vehicle_type)
+
+    @staticmethod
+    def _print_vehicle_info(spot):
+        print(f'  Registration No: {spot.vehicle.get_vehicle_registration_no()}')
+        print(f'  Spot Number    : {spot.spot_number}')
+        print(f'  Vehicle Type   : {spot.vehicle.get_vehicle_type()}')
+        print(f'  Color          : {spot.vehicle.get_vehicle_color()}')
