@@ -109,6 +109,7 @@ We welcome contributions to this project. If you are interested in contributing,
 - Finalize the testing module.
 - Rectify the output format.
 - Enhance the command set by adding new commands.
+- Add Thread safety in implementation.
 
 If you are interested in contributing to any of these tasks, please feel free to reach out for more information.
 

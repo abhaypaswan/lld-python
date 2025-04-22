@@ -1,5 +1,5 @@
-park_vehicle ABC-123 Red TwoWheeler
-park_vehicle DEF-456 White FourWheeler
+park_vehicle Red ABC-123 TwoWheeler
+park_vehicle White DEF-456 FourWheeler
 list_all_parked_vehicles
 free_parking_spot 0 TwoWheeler
 list_all_parked_vehicles
