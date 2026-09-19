@@ -1,0 +1,27 @@
+{
+  "slug": "tic-tac-toe",
+  "title": "Design Tic Tac Toe",
+  "difficulty": "easy",
+  "summary": "Play on an N x N board with O(1) win detection using per-line counters instead of scanning, and a bot whose difficulty is a swappable strategy — random, or a minimax player that provably never loses.",
+  "tags": ["game", "board-game", "algorithms", "minimax", "beginner-friendly"],
+  "patterns": ["strategy", "observer"],
+  "concepts": [
+    "O(1) win detection with incremental line counters",
+    "Undo on the board so minimax can explore without copying it",
+    "Separating who moves from how a bot decides",
+    "Depth-aware minimax scoring, and alpha-beta pruning",
+    "Injecting the input source so a human player is testable"
+  ],
+  "entrypoint": "src/main.py",
+  "tests": "tests",
+  "estimatedMinutes": 40,
+  "askedAt": ["Amazon", "Microsoft", "Adobe", "Zomato"],
+  "diagram": { "mermaid": true },
+  "extensions": [
+    "Generalise to k-in-a-row on an N x N board",
+    "Add more than two players",
+    "Add undo and redo for human players",
+    "Add a medium-difficulty bot that makes deliberate mistakes",
+    "Persist and resume a game in progress"
+  ]
+}
