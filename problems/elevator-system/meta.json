@@ -1,0 +1,29 @@
+{
+  "slug": "elevator-system",
+  "title": "Design an Elevator System",
+  "difficulty": "hard",
+  "summary": "Run a bank of elevators where each car follows the LOOK algorithm — sweep one way serving every stop, reverse only when nothing is ahead — and the choice of which car answers a hall call is a strategy that can be tuned without any car noticing.",
+  "tags": ["simulation", "scheduling", "state-machine", "concurrency", "most-asked"],
+  "patterns": ["strategy", "state", "observer"],
+  "concepts": [
+    "The LOOK/SCAN algorithm, and why nearest-first starves riders",
+    "Serving a stop only in the direction the rider wants to travel",
+    "Hall calls and car calls as genuinely different request types",
+    "Separating which car is chosen from how a car behaves once chosen",
+    "Tick-based simulation so scheduling is testable without threads",
+    "Wall-clock time versus total distance as competing objectives"
+  ],
+  "entrypoint": "src/main.py",
+  "tests": "tests",
+  "estimatedMinutes": 75,
+  "askedAt": ["Amazon", "Google", "Uber", "Microsoft", "Flipkart"],
+  "diagram": { "mermaid": true },
+  "extensions": [
+    "Run each elevator on its own thread with a real controller",
+    "Add weight-based capacity so a full car skips hall calls",
+    "Add express elevators that serve only some floors",
+    "Add emergency and fire-service modes that override scheduling",
+    "Add destination dispatch, where riders enter their floor in the lobby",
+    "Handle a car that fails mid-journey and reassign its riders"
+  ]
+}
