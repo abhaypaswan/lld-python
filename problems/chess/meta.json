@@ -1,0 +1,29 @@
+{
+  "slug": "chess",
+  "title": "Design Chess",
+  "difficulty": "hard",
+  "summary": "Give each piece responsibility for how it moves, make every move an undoable command, and decide legality by playing a move and asking whether your own king is now attacked — verified against known perft counts to depth four.",
+  "tags": ["game", "board-game", "rules-engine", "recursion", "hard"],
+  "patterns": ["strategy", "command", "template-method", "observer"],
+  "concepts": [
+    "Pseudo-legal versus legal moves, and why the split is necessary",
+    "Make/unmake as the mechanism that makes legality decidable",
+    "Capturing everything a move needs to reverse itself, at the time it is made",
+    "Why a pawn's attacks differ from its moves",
+    "Deriving game status from the position rather than caching it",
+    "Perft as a correctness check on move generation"
+  ],
+  "entrypoint": "src/main.py",
+  "tests": "tests",
+  "estimatedMinutes": 90,
+  "askedAt": ["Google", "Amazon", "Microsoft", "Directi", "Uber"],
+  "diagram": { "mermaid": true },
+  "extensions": [
+    "Add threefold repetition as a draw condition",
+    "Import and export FEN and PGN",
+    "Add an engine with minimax and alpha-beta over this move generator",
+    "Switch to bitboards and measure the difference against perft",
+    "Support variants such as Chess960 where castling squares differ",
+    "Add a clock with increment and flag-fall"
+  ]
+}
