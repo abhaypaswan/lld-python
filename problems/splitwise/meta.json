@@ -1,0 +1,28 @@
+{
+  "slug": "splitwise",
+  "title": "Design Splitwise",
+  "difficulty": "medium",
+  "summary": "Track shared expenses across four split types where every split sums exactly to the total, keep one net balance per person instead of a debt matrix, and settle the whole group in at most n-1 payments.",
+  "tags": ["fintech", "ledger", "money", "graph", "most-asked"],
+  "patterns": ["strategy", "observer"],
+  "concepts": [
+    "Integer money, and why floats break ledgers slowly",
+    "The largest remainder method for splits that do not divide evenly",
+    "Net balances instead of a who-owes-whom matrix",
+    "Greedy debt settlement, its n-1 bound, and why the true minimum is NP-hard",
+    "Freezing derived values so history cannot be rewritten"
+  ],
+  "entrypoint": "src/main.py",
+  "tests": "tests",
+  "estimatedMinutes": 60,
+  "askedAt": ["Amazon", "Uber", "Swiggy", "Razorpay", "Flipkart"],
+  "diagram": { "mermaid": true },
+  "extensions": [
+    "Support multiple currencies and decide which exchange rate applies",
+    "Add groups, and decide whether balances are per group or global",
+    "Allow editing and deleting past expenses",
+    "Rotate who absorbs the rounding remainder across expenses",
+    "Restrict settlement suggestions to within a group",
+    "Handle concurrent expense creation"
+  ]
+}
