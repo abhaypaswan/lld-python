@@ -1,0 +1,28 @@
+{
+  "slug": "atm",
+  "title": "Design an ATM",
+  "difficulty": "medium",
+  "summary": "Model an ATM as a state machine where each state permits only what is safe from it, and build the note dispenser as a chain of denomination handlers that plans the full amount before a single note leaves the box.",
+  "tags": ["fintech", "state-machine", "transactions", "safety", "most-asked"],
+  "patterns": ["state", "chain-of-responsibility"],
+  "concepts": [
+    "States as a security boundary, not just a convenience",
+    "All-or-nothing dispensing: planning against a copy before committing",
+    "Ordering a debit and a dispense so a failure never costs the customer",
+    "Keeping the bank separate from the machine so it can be stubbed",
+    "Greedy note selection, and when it stops being correct"
+  ],
+  "entrypoint": "src/main.py",
+  "tests": "tests",
+  "estimatedMinutes": 60,
+  "askedAt": ["Amazon", "Goldman Sachs", "PayPal", "Visa", "Paytm"],
+  "diagram": { "mermaid": true },
+  "extensions": [
+    "Add a transaction log that survives a power cut mid-dispense",
+    "Support multiple currencies in one machine",
+    "Add card types with different daily limits and fees",
+    "Handle a network outage to the bank with offline limits",
+    "Make the machine safe against concurrent sessions on a shared cash box",
+    "Add receipt printing and mini-statements"
+  ]
+}
