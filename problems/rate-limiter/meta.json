@@ -1,0 +1,27 @@
+{
+  "slug": "rate-limiter",
+  "title": "Design a Rate Limiter",
+  "difficulty": "medium",
+  "summary": "Implement token bucket, fixed window, sliding window log and sliding window counter behind one interface, and be able to say what each one gets wrong — starting with the boundary burst that lets a fixed window pass double its limit.",
+  "tags": ["api", "throttling", "algorithms", "distributed-systems", "most-asked"],
+  "patterns": ["strategy"],
+  "concepts": [
+    "Memory versus accuracy trade-offs between limiting algorithms",
+    "The fixed-window boundary burst, and two ways to fix it",
+    "Lazy token refill so idle clients cost nothing to track",
+    "Passing time in as a parameter so time-based logic is testable",
+    "Bounding per-client state so the bucket map is not a leak"
+  ],
+  "entrypoint": "src/main.py",
+  "tests": "tests",
+  "estimatedMinutes": 50,
+  "askedAt": ["Stripe", "Cloudflare", "Amazon", "Uber", "Razorpay"],
+  "diagram": { "mermaid": true },
+  "extensions": [
+    "Distribute the limiter across servers using Redis",
+    "Support different limits per customer tier",
+    "Limit on several keys at once (user, IP and endpoint)",
+    "Decide whether to fail open or fail closed when the limiter is unavailable",
+    "Emit standard X-RateLimit and Retry-After headers"
+  ]
+}
