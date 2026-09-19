@@ -65,11 +65,13 @@ problems/vending-machine/
 | 5 | [Design a Notification Service](problems/notification-service/) | 🟡 Medium | Decorator, Observer, Factory Method, Strategy | 55 min |
 | 6 | [Design a Parking Lot](problems/parking-lot/) | 🟡 Medium | Strategy, Factory Method, Command, Facade | 60 min |
 | 7 | [Design a Rate Limiter](problems/rate-limiter/) | 🟡 Medium | Strategy | 50 min |
-| 8 | [Design a Vending Machine](problems/vending-machine/) | 🟡 Medium | State | 50 min |
-| 9 | [Design an ATM](problems/atm/) | 🟡 Medium | State, Chain of Responsibility | 60 min |
-| 10 | [Design an LRU Cache](problems/lru-cache/) | 🟡 Medium | Strategy, Template Method | 45 min |
-| 11 | [Design Chess](problems/chess/) | 🔴 Hard | Strategy, Command, Template Method, Observer | 90 min |
-| 12 | [Design an Elevator System](problems/elevator-system/) | 🔴 Hard | Strategy, State, Observer | 75 min |
+| 8 | [Design a Text Editor with Undo](problems/text-editor/) | 🟡 Medium | Command, Memento, Composite, Facade | 55 min |
+| 9 | [Design a Vending Machine](problems/vending-machine/) | 🟡 Medium | State | 50 min |
+| 10 | [Design an ATM](problems/atm/) | 🟡 Medium | State, Chain of Responsibility | 60 min |
+| 11 | [Design an In-Memory File System](problems/file-system/) | 🟡 Medium | Composite, Visitor, Iterator, Facade | 55 min |
+| 12 | [Design an LRU Cache](problems/lru-cache/) | 🟡 Medium | Strategy, Template Method | 45 min |
+| 13 | [Design Chess](problems/chess/) | 🔴 Hard | Strategy, Command, Template Method, Observer | 90 min |
+| 14 | [Design an Elevator System](problems/elevator-system/) | 🔴 Hard | Strategy, State, Observer | 75 min |
 
 <!-- END PROBLEM TABLE -->
 

@@ -1,0 +1,29 @@
+{
+  "slug": "text-editor",
+  "title": "Design a Text Editor with Undo",
+  "difficulty": "medium",
+  "summary": "Build an editor whose every edit is a reversible command, where consecutive keystrokes coalesce into one undo step, replace-all undoes as a single action, and a new edit after an undo correctly discards the redo stack.",
+  "tags": ["editor", "undo-redo", "commands", "productivity", "most-asked"],
+  "patterns": ["command", "memento", "composite", "facade"],
+  "concepts": [
+    "Command versus Memento for undo, and the memory trade between them",
+    "Why a new edit must clear the redo stack",
+    "Coalescing keystrokes so undo matches what a user considers one action",
+    "Composite commands undoing in reverse order",
+    "Capturing inverse data at execute time, not construction time",
+    "Bounding the undo stack so a long session is not a leak"
+  ],
+  "entrypoint": "src/main.py",
+  "tests": "tests",
+  "estimatedMinutes": 55,
+  "askedAt": ["Microsoft", "Google", "Atlassian", "Adobe", "Zoho"],
+  "diagram": { "mermaid": true },
+  "extensions": [
+    "Add a piece table or rope so large files do not copy the whole string",
+    "Support multiple cursors editing at once",
+    "Add collaborative editing with operational transforms or CRDTs",
+    "Add syntax highlighting as a decorator over the document",
+    "Persist the undo history across sessions",
+    "Add a non-linear undo tree rather than a single stack"
+  ]
+}

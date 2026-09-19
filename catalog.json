@@ -2,18 +2,22 @@
   "$schema": "./schema/problem.schema.json",
   "version": 1,
   "source": "https://github.com/abhaypaswan/lld-python",
-  "count": 12,
+  "count": 14,
   "patterns": [
     "chain-of-responsibility",
     "command",
+    "composite",
     "decorator",
     "facade",
     "factory-method",
+    "iterator",
+    "memento",
     "observer",
     "singleton",
     "state",
     "strategy",
-    "template-method"
+    "template-method",
+    "visitor"
   ],
   "tags": [
     "algorithms",
@@ -23,10 +27,12 @@
     "cache",
     "classic",
     "command-line",
+    "commands",
     "concurrency",
     "data-structures",
     "dice",
     "distributed-systems",
+    "editor",
     "extensibility",
     "fan-out",
     "fintech",
@@ -43,9 +49,11 @@
     "money",
     "most-asked",
     "observability",
+    "paths",
     "payments",
     "performance",
     "pricing",
+    "productivity",
     "recursion",
     "reliability",
     "resource-allocation",
@@ -56,7 +64,10 @@
     "state-machine",
     "throttling",
     "transactions",
-    "turn-based"
+    "traversal",
+    "tree",
+    "turn-based",
+    "undo-redo"
   ],
   "problems": [
     {
@@ -381,6 +392,55 @@
       "path": "problems/rate-limiter"
     },
     {
+      "slug": "text-editor",
+      "title": "Design a Text Editor with Undo",
+      "difficulty": "medium",
+      "summary": "Build an editor whose every edit is a reversible command, where consecutive keystrokes coalesce into one undo step, replace-all undoes as a single action, and a new edit after an undo correctly discards the redo stack.",
+      "tags": [
+        "editor",
+        "undo-redo",
+        "commands",
+        "productivity",
+        "most-asked"
+      ],
+      "patterns": [
+        "command",
+        "memento",
+        "composite",
+        "facade"
+      ],
+      "concepts": [
+        "Command versus Memento for undo, and the memory trade between them",
+        "Why a new edit must clear the redo stack",
+        "Coalescing keystrokes so undo matches what a user considers one action",
+        "Composite commands undoing in reverse order",
+        "Capturing inverse data at execute time, not construction time",
+        "Bounding the undo stack so a long session is not a leak"
+      ],
+      "entrypoint": "src/main.py",
+      "tests": "tests",
+      "estimatedMinutes": 55,
+      "askedAt": [
+        "Microsoft",
+        "Google",
+        "Atlassian",
+        "Adobe",
+        "Zoho"
+      ],
+      "diagram": {
+        "mermaid": true
+      },
+      "extensions": [
+        "Add a piece table or rope so large files do not copy the whole string",
+        "Support multiple cursors editing at once",
+        "Add collaborative editing with operational transforms or CRDTs",
+        "Add syntax highlighting as a decorator over the document",
+        "Persist the undo history across sessions",
+        "Add a non-linear undo tree rather than a single stack"
+      ],
+      "path": "problems/text-editor"
+    },
+    {
       "slug": "vending-machine",
       "title": "Design a Vending Machine",
       "difficulty": "medium",
@@ -467,6 +527,55 @@
         "Add receipt printing and mini-statements"
       ],
       "path": "problems/atm"
+    },
+    {
+      "slug": "file-system",
+      "title": "Design an In-Memory File System",
+      "difficulty": "medium",
+      "summary": "Model files and directories as one composite tree so no caller ever branches on which it is holding, then add search, disk usage and rendering as visitors that walk the tree without living on it.",
+      "tags": [
+        "tree",
+        "traversal",
+        "paths",
+        "data-structures",
+        "most-asked"
+      ],
+      "patterns": [
+        "composite",
+        "visitor",
+        "iterator",
+        "facade"
+      ],
+      "concepts": [
+        "Composite: a uniform interface over leaves and containers",
+        "Why two typed child lists force every traversal to be written twice",
+        "Deriving size recursively instead of caching and invalidating it",
+        "Visitor's trade: cheap new operations, expensive new node types",
+        "Lazy traversal with generators over materialising the whole tree",
+        "Resolving . and .. during the walk so .. cannot escape the root"
+      ],
+      "entrypoint": "src/main.py",
+      "tests": "tests",
+      "estimatedMinutes": 55,
+      "askedAt": [
+        "Amazon",
+        "Google",
+        "Dropbox",
+        "Microsoft",
+        "Uber"
+      ],
+      "diagram": {
+        "mermaid": true
+      },
+      "extensions": [
+        "Add symbolic links, and decide what they do to recursive size",
+        "Add permissions and ownership per node",
+        "Add copy-on-write snapshots of a subtree",
+        "Support file handles with seek, read and write offsets",
+        "Cache directory sizes correctly, invalidating up the ancestor chain",
+        "Make the tree safe for concurrent readers and writers"
+      ],
+      "path": "problems/file-system"
     },
     {
       "slug": "lru-cache",

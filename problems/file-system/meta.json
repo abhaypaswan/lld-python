@@ -1,0 +1,29 @@
+{
+  "slug": "file-system",
+  "title": "Design an In-Memory File System",
+  "difficulty": "medium",
+  "summary": "Model files and directories as one composite tree so no caller ever branches on which it is holding, then add search, disk usage and rendering as visitors that walk the tree without living on it.",
+  "tags": ["tree", "traversal", "paths", "data-structures", "most-asked"],
+  "patterns": ["composite", "visitor", "iterator", "facade"],
+  "concepts": [
+    "Composite: a uniform interface over leaves and containers",
+    "Why two typed child lists force every traversal to be written twice",
+    "Deriving size recursively instead of caching and invalidating it",
+    "Visitor's trade: cheap new operations, expensive new node types",
+    "Lazy traversal with generators over materialising the whole tree",
+    "Resolving . and .. during the walk so .. cannot escape the root"
+  ],
+  "entrypoint": "src/main.py",
+  "tests": "tests",
+  "estimatedMinutes": 55,
+  "askedAt": ["Amazon", "Google", "Dropbox", "Microsoft", "Uber"],
+  "diagram": { "mermaid": true },
+  "extensions": [
+    "Add symbolic links, and decide what they do to recursive size",
+    "Add permissions and ownership per node",
+    "Add copy-on-write snapshots of a subtree",
+    "Support file handles with seek, read and write offsets",
+    "Cache directory sizes correctly, invalidating up the ancestor chain",
+    "Make the tree safe for concurrent readers and writers"
+  ]
+}
