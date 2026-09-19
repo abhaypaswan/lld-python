@@ -14,8 +14,18 @@ python3 -m pytest
 
 ## Adding a problem
 
-A problem is a directory under `problems/<slug>/`, where the slug is
-kebab-case:
+Start with the scaffold rather than an empty directory:
+
+```bash
+python3 scripts/new_problem.py your-problem --difficulty medium --minutes 60
+```
+
+That creates every file described below, filled in with placeholders. It
+already runs, already passes `validate.py`, and is already lint-clean — so you
+can replace the pieces one at a time and keep everything green instead of
+having nothing working until the end.
+
+The layout it creates, under `problems/<slug>/` with a kebab-case slug:
 
 ```
 problems/your-problem/

@@ -1,38 +1,37 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
-
+about: Something in a problem's code, tests or write-up is wrong
+title: '[problem-slug] '
+labels: bug
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Which problem**
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+e.g. `parking-lot`
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**What is wrong**
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+A design that does not hold up is as much a bug as code that crashes. Both are
+welcome.
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+**How to see it**
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+The most useful report is a failing test. If you can write one, paste it here —
+it does not have to pass review, it just has to demonstrate the problem.
 
-**Additional context**
-Add any other context about the problem here.
+```python
+def test_shows_the_bug(): ...
+```
+
+Otherwise, the commands you ran and what happened:
+
+```
+$ cd problems/... && python3 src/main.py
+```
+
+**What you expected instead**
+
+**Environment**
+
+- Python version:
+- OS:
