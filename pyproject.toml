@@ -12,3 +12,10 @@ target-version = "py310"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+# This file is a dictionary of one-sentence prose explanations. Wrapping them
+# with implicit string concatenation to satisfy the line limit makes them
+# genuinely harder to read and to edit, for no benefit -- there is no code on
+# those lines to follow.
+"scripts/patterns_reference.py" = ["E501"]

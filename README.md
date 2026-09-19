@@ -82,6 +82,11 @@ Every problem's README carries a mermaid class diagram that renders inline on
 GitHub, the reasoning behind each pattern used, and the follow-up questions an
 interviewer is likely to ask next.
 
+Looking for a particular pattern rather than a particular problem?
+**[docs/patterns.md](docs/patterns.md)** indexes all 20 the other way round —
+what each one is for, the question that makes you reach for it, the mistake it
+attracts, and which problems here work it through.
+
 ## Getting started
 
 ```bash
@@ -125,11 +130,12 @@ genuinely uses, and how long it should take. Those files validate against
 
 ```bash
 python3 scripts/validate.py        # check every problem is complete and consistent
-python3 scripts/build_catalog.py   # regenerate catalog.json and the table above
+python3 scripts/build_catalog.py   # regenerate catalog.json, the table above, and docs/patterns.md
 ```
 
-The problem table in this README is generated. Edit a `meta.json` and re-run the
-build rather than editing the table by hand.
+`catalog.json`, the problem table above, and `docs/patterns.md` are all
+generated. Edit a `meta.json` and re-run the build rather than editing any of
+them by hand — CI fails if they drift.
 
 ### A note on the tests
 

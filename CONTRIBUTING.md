@@ -79,14 +79,16 @@ Inject clocks and random sources rather than calling `time.time()` or
 ```bash
 python3 -m pytest              # all green
 python3 scripts/validate.py    # every problem complete and consistent
-python3 scripts/build_catalog.py   # refresh catalog.json and the README table
+python3 scripts/build_catalog.py   # refresh catalog.json, the README table, docs/patterns.md
 ruff check . && ruff format .
 ```
 
 CI runs all of these, plus every problem's demo, on Python 3.10 through 3.13.
 
-Never hand-edit the problem table in `README.md` or `catalog.json` — both are
-generated from the `meta.json` files.
+Never hand-edit `catalog.json`, the problem table in `README.md`, or
+`docs/patterns.md` — all three are generated from the `meta.json` files. The one
+hand-written part of the patterns index is each pattern's explanation, which
+lives in `scripts/patterns_reference.py`.
 
 ## Pull requests
 

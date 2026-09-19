@@ -32,7 +32,7 @@ jobs:
       - name: Check every problem is complete and consistent
         run: python scripts/validate.py
 
-      - name: Check the catalog and README table are up to date
+      - name: Check the generated catalog, README table and patterns doc are current
         run: python scripts/build_catalog.py --check
 
   demos:
