@@ -19,6 +19,7 @@ from tic_tac_toe import (  # noqa: E402
     Game,
     HumanPlayer,
     MinimaxStrategy,
+    PlayerQuit,
     RandomStrategy,
 )
 
@@ -56,7 +57,11 @@ def main(argv: list[str] | None = None) -> int:
     print(game.board.render())
     print()
 
-    winner = game.play()
+    try:
+        winner = game.play()
+    except PlayerQuit as exc:
+        print(f"\n{exc}. Game abandoned.")
+        return 0
 
     print("-" * 30)
     print(f"{winner} wins." if winner else "Draw.")

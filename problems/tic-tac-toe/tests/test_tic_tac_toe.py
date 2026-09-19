@@ -13,7 +13,7 @@ from tic_tac_toe import (
 )
 from tic_tac_toe.board import Board
 from tic_tac_toe.game import GameOver
-from tic_tac_toe.players import HumanPlayer
+from tic_tac_toe.players import HumanPlayer, PlayerQuit
 
 
 def play(game, *cells):
@@ -272,3 +272,23 @@ def test_a_human_is_asked_again_for_a_taken_square(capsys):
     player = HumanPlayer("X", prompt=lambda _: next(answers))
 
     assert player.choose_move(board, "O") == Cell(1, 1)
+
+
+def test_a_human_with_no_input_quits_cleanly():
+    """Piped stdin or a closed terminal ends the game; it is not a crash."""
+
+    def no_one_there(_):
+        raise EOFError
+
+    player = HumanPlayer("X", prompt=no_one_there)
+
+    with pytest.raises(PlayerQuit, match="stopped playing"):
+        player.choose_move(Board(3), "O")
+
+
+def test_an_interrupted_human_quits_cleanly():
+    def interrupted(_):
+        raise KeyboardInterrupt
+
+    with pytest.raises(PlayerQuit):
+        HumanPlayer("X", prompt=interrupted).choose_move(Board(3), "O")

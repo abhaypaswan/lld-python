@@ -18,6 +18,10 @@ from collections.abc import Callable
 from .board import Board, Cell
 
 
+class PlayerQuit(Exception):
+    """A human stopped playing -- Ctrl-D, Ctrl-C, or no terminal at all."""
+
+
 class Player(ABC):
     """Someone taking turns with a symbol."""
 
@@ -181,7 +185,13 @@ class HumanPlayer(Player):
 
     def choose_move(self, board: Board, opponent_symbol: str) -> Cell:
         while True:
-            raw = self.prompt(f"{self.name}, your move (row col): ")
+            try:
+                raw = self.prompt(f"{self.name}, your move (row col): ")
+            except (EOFError, KeyboardInterrupt):
+                # No one is there: piped stdin, a closed terminal, Ctrl-D. This
+                # is an ordinary way for a game to end, not a crash.
+                raise PlayerQuit(f"{self.name} stopped playing") from None
+
             try:
                 row, column = (int(part) for part in raw.replace(",", " ").split())
             except ValueError:

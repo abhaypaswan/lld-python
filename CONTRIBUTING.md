@@ -39,10 +39,14 @@ problems/your-problem/
     └── test_your_problem.py
 ```
 
-**The package name must be the slug with underscores.** Every problem's `src/`
-goes on `sys.path` at once (see the root `conftest.py`), so a shared package
-name like `model` would mean the second problem to define it silently gets the
-first one's module.
+**The package name must be the slug with underscores.** Each problem's
+`conftest.py` puts its own `src/` on `sys.path`, and when the whole suite runs
+they are all there at once — so a shared package name like `model` would mean
+the second problem to define it silently gets the first one's module.
+
+That `conftest.py` is also what makes a problem **standalone**: copy the
+directory out of the repository and `python3 -m pytest` still works inside it.
+CI proves this for every problem on every push, so do not remove it.
 
 ### What each piece needs
 
@@ -91,9 +95,17 @@ python3 -m pytest              # all green
 python3 scripts/validate.py    # every problem complete and consistent
 python3 scripts/build_catalog.py   # refresh catalog.json, the README table, docs/patterns.md
 ruff check . && ruff format .
+python3 scripts/check_examples.py  # every documented command runs, every shown output is real
 ```
 
-CI runs all of these, plus every problem's demo, on Python 3.10 through 3.13.
+CI runs all of these on Python 3.10 through 3.13, plus every problem in
+isolation outside the repository.
+
+**If your README shows command output, paste what the command actually
+prints.** `check_examples.py` runs every ```bash block and checks every
+unlabelled block after one against the real output, so a hand-tidied paste
+fails the build. Timestamps, temporary paths and epoch values are masked, and
+a trailing `...` on a line means "the rest was trimmed".
 
 Never hand-edit `catalog.json`, the problem table in `README.md`, or
 `docs/patterns.md` — all three are generated from the `meta.json` files. The one

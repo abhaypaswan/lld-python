@@ -256,7 +256,7 @@ cd problems/payment-gateway && python3 src/main.py
 
 4. A decline falls back. A bad request does not.
 
-   declined card: tried ['stripe', 'adyen'] -> adyen: charged 25.00 USD
+   declined card: tried ['stripe', 'adyen'] -> adyen: charged 25.00 USD (ADY0000000002)
    zero amount:   tried ['stripe'] -> stripe: failed — Amount must be positive
 
 5. Idempotency: a flaky client retrying must not charge twice.

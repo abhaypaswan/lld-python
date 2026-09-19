@@ -35,9 +35,10 @@ jobs:
       - name: Check the generated catalog, README table and patterns doc are current
         run: python scripts/build_catalog.py --check
 
-  demos:
-    # Every problem advertises a runnable demo. This makes sure they all still
-    # run, which the unit tests do not cover.
+  standalone:
+    # Each problem claims to be self-contained. This proves it: every problem
+    # is copied out of the repository, away from the root pyproject.toml, and
+    # its tests and demo are run with nothing else present.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -46,21 +47,55 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Run every problem's demo
+      - run: pip install pytest
+
+      - name: Run every problem in isolation
         run: |
-          set -e
+          set -u
           failed=0
+          workdir=$(mktemp -d)
+
           for problem in problems/*/; do
             slug=$(basename "$problem")
-            printf '%-22s' "$slug"
-            if (cd "$problem" && timeout 120 python src/main.py > /dev/null 2>&1); then
-              echo "ok"
+            cp -R "$problem" "$workdir/$slug"
+            find "$workdir/$slug" -name '__pycache__' -type d -exec rm -rf {} + 2>/dev/null || true
+            printf '%-24s' "$slug"
+
+            if (cd "$workdir/$slug" && timeout 300 python -m pytest -q > /dev/null 2>&1); then
+              tests=ok
             else
-              echo "FAILED"
+              tests=TESTS-FAILED
               failed=1
             fi
+
+            if (cd "$workdir/$slug" && timeout 300 python src/main.py > /dev/null 2>&1 < /dev/null); then
+              demo=ok
+            else
+              demo=DEMO-FAILED
+              failed=1
+            fi
+
+            echo "tests:$tests demo:$demo"
           done
+
           exit $failed
+
+  examples:
+    # Every command in the documentation is executed, and every output block
+    # the docs show is checked against what the command really prints.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements-dev.txt
+
+      - name: Check every documented example
+        run: python scripts/check_examples.py
 
   lint:
     runs-on: ubuntu-latest

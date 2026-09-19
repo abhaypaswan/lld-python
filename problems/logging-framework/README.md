@@ -207,13 +207,14 @@ cd problems/logging-framework && python3 src/main.py
 ```
 
 ```
-2026-09-19 05:35:39 [INFO] app: GET /orders request_id=req-8814 user=alice
-2026-09-19 05:35:39 [ERROR] app: Upstream timeout request_id=req-8814 status=504 upstream=payments
+2026-09-19 06:27:43 [INFO] app: GET /orders request_id=req-8814 user=alice
+2026-09-19 06:27:43 [ERROR] app: Upstream timeout request_id=req-8814 status=504 upstream=payments user=alice
 
 7 records passed through the chain.
-2 of them reached errors.jsonl:
+2 of them reached /tmp/lld-logging-a1b2c3/errors.jsonl:
 
-{"level": "ERROR", "logger": "app", "message": "Upstream timeout", "status": 504, ...}
+{"level": "ERROR", "logger": "app", "message": "Upstream timeout", "request_id": "req-8814", "status": 504, "timestamp": 1789799263.605953, "upstream": "payments", "user": "alice"}
+{"level": "ERROR", "logger": "db", "message": "Connection pool exhausted", "size": 20, "timestamp": 1789799263.6060832, "waiting": 7}
 ```
 
 ## Tests

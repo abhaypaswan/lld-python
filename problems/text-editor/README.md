@@ -230,18 +230,19 @@ cd problems/text-editor && python3 src/main.py
 ```
 1. Typing character by character coalesces into ONE undo step.
 
-  'hello|'                        [undo:1]  five keystrokes
-  '|'                             [undo:0 redo:1+]  one undo took all five
+  'hello|'                                   [undo:1]  five keystrokes
+  '|'                                        [undo:0 redo:1+]  one undo took all five
+  'hello|'                                   [undo:1]  and one redo brought them back
 
 3. The rule everyone gets wrong: a new edit clears the redo stack.
 
-  'hello\n|'                      [undo:2 redo:1+]  can_redo=True
-  'hello\nthere|'                 [undo:3]  typed something -> can_redo=False
+  'hello\n|'                                 [undo:2 redo:1+]  can_redo=True
+  'hello\nthere|'                            [undo:3]  typed something -> can_redo=False
 
 4. Replace-all is one undo step, not one per match.
 
-  'the cOG| sOG on the mOG'       [undo:1]  Undo Replace 3 occurrences
-  'the cat sat on the mat|'       [undo:0 redo:1+]  all three reversed together
+  'the cOG| sOG on the mOG'                  [undo:1]  Undo Replace 3 occurrences
+  'the cat sat on the mat|'                  [undo:0 redo:1+]  all three reversed together
 ```
 
 Or drive it with `--interactive`.

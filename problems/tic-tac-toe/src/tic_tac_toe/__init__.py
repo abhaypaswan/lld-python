@@ -2,7 +2,14 @@
 
 from .board import Board, Cell
 from .game import Game, GameStatus
-from .players import BotPlayer, HumanPlayer, MinimaxStrategy, Player, RandomStrategy
+from .players import (
+    BotPlayer,
+    HumanPlayer,
+    MinimaxStrategy,
+    Player,
+    PlayerQuit,
+    RandomStrategy,
+)
 
 __all__ = [
     "Board",
@@ -13,5 +20,6 @@ __all__ = [
     "HumanPlayer",
     "BotPlayer",
     "RandomStrategy",
+    "PlayerQuit",
     "MinimaxStrategy",
 ]

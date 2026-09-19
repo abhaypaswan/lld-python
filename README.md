@@ -113,6 +113,13 @@ Or one problem's:
 python3 -m pytest problems/chess -v
 ```
 
+Each problem is genuinely self-contained — copy one out of the repository and
+its tests and demo still run, with nothing else present:
+
+```bash
+cd problems/chess && python3 -m pytest
+```
+
 ## How this repository is put together
 
 Each problem lives in `problems/<slug>/` and is self-contained — you can read
@@ -131,6 +138,7 @@ genuinely uses, and how long it should take. Those files validate against
 ```bash
 python3 scripts/validate.py        # check every problem is complete and consistent
 python3 scripts/build_catalog.py   # regenerate catalog.json, the table above, and docs/patterns.md
+python3 scripts/check_examples.py  # run every command in these docs and verify its output
 ```
 
 `catalog.json`, the problem table above, and `docs/patterns.md` are all
@@ -169,7 +177,10 @@ the design is meant to handle.
 4. Run `python3 scripts/build_catalog.py` to refresh the catalog
 5. Open a pull request
 
-CI runs the tests, the validator, and a check that the catalog is up to date.
+CI runs four jobs: the test suite on Python 3.10–3.13 plus the validator and
+the generated-file check; every problem in isolation, copied out of the
+repository; every command in the documentation, with its shown output verified;
+and lint.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
