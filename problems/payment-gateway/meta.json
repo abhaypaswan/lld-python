@@ -1,0 +1,29 @@
+{
+  "slug": "payment-gateway",
+  "title": "Design a Payment Gateway",
+  "difficulty": "hard",
+  "summary": "Wrap three payment SDKs that disagree about units, method names and how failure is signalled behind one interface, then use an abstract factory so a region's processor, tax rules and money formatting can never be mixed up.",
+  "tags": ["fintech", "integration", "third-party", "idempotency", "most-asked"],
+  "patterns": ["adapter", "abstract-factory", "strategy", "facade"],
+  "concepts": [
+    "Adapter for interfaces you do not own and cannot change",
+    "Normalising three different failure conventions into one result type",
+    "Converting units at the boundary, so a 100x error cannot be made upstream",
+    "Abstract Factory for families whose members must stay consistent",
+    "Idempotency keys, and why the same key must never charge twice",
+    "Distinguishing a decline worth retrying from a request that never will be"
+  ],
+  "entrypoint": "src/main.py",
+  "tests": "tests",
+  "estimatedMinutes": 70,
+  "askedAt": ["Stripe", "Razorpay", "PayPal", "Amazon", "Uber", "Swiggy"],
+  "diagram": { "mermaid": true },
+  "extensions": [
+    "Add a circuit breaker so a provider having an outage is skipped",
+    "Handle webhooks for payments that settle asynchronously",
+    "Add a reconciliation job for charges whose outcome is unknown",
+    "Route by cost, picking the cheapest provider per transaction",
+    "Add 3-D Secure, where the flow pauses for the customer to authenticate",
+    "Support multi-currency settlement with exchange rates"
+  ]
+}

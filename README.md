@@ -73,7 +73,8 @@ problems/vending-machine/
 | 13 | [Design an LRU Cache](problems/lru-cache/) | 🟡 Medium | Strategy, Template Method | 45 min |
 | 14 | [Design Chess](problems/chess/) | 🔴 Hard | Strategy, Command, Template Method, Observer | 90 min |
 | 15 | [Design a Movie Ticket Booking System](problems/movie-ticket-booking/) | 🔴 Hard | Builder, Repository, Proxy, Strategy, Facade | 80 min |
-| 16 | [Design an Elevator System](problems/elevator-system/) | 🔴 Hard | Strategy, State, Observer | 75 min |
+| 16 | [Design a Payment Gateway](problems/payment-gateway/) | 🔴 Hard | Adapter, Abstract Factory, Strategy, Facade | 70 min |
+| 17 | [Design an Elevator System](problems/elevator-system/) | 🔴 Hard | Strategy, State, Observer | 75 min |
 
 <!-- END PROBLEM TABLE -->
 
