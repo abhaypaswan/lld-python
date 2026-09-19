@@ -1,0 +1,28 @@
+{
+  "slug": "logging-framework",
+  "title": "Design a Logging Framework",
+  "difficulty": "medium",
+  "summary": "Route log records down a handler chain where every link applies its own threshold and format, so one chain can send everything to the console and only errors to a JSON file — and where the chain deliberately does not stop at the first handler that takes it.",
+  "tags": ["infrastructure", "observability", "extensibility", "library-design"],
+  "patterns": ["chain-of-responsibility", "strategy", "singleton"],
+  "concepts": [
+    "Adapting a pattern rather than copying it: why a logging chain must not stop",
+    "Two thresholds serving different purposes: a cheap gate and per-sink filtering",
+    "Keeping format independent of destination to avoid a class per combination",
+    "When Singleton is genuinely correct, and what it costs in testability",
+    "Bound context for correlating records across a request"
+  ],
+  "entrypoint": "src/main.py",
+  "tests": "tests",
+  "estimatedMinutes": 45,
+  "askedAt": ["Amazon", "Salesforce", "Oracle", "Zoho"],
+  "diagram": { "mermaid": true },
+  "extensions": [
+    "Make delivery asynchronous with a queue and a writer thread",
+    "Rotate log files by size or date",
+    "Rate-limit repeated identical messages with a decorating handler",
+    "Support hierarchical loggers that inherit handlers from their parent",
+    "Make handlers safe for concurrent writers",
+    "Redact secrets before records are written"
+  ]
+}
