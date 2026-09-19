@@ -1,0 +1,28 @@
+{
+  "slug": "notification-service",
+  "title": "Design a Notification Service",
+  "difficulty": "medium",
+  "summary": "Fan a message out to email, SMS, push and Slack according to each subscriber's per-channel priority threshold, with retry, rate limiting and deduplication written once as decorators that compose around any channel.",
+  "tags": ["messaging", "infrastructure", "fan-out", "reliability", "most-asked"],
+  "patterns": ["decorator", "observer", "factory-method", "strategy"],
+  "concepts": [
+    "Cross-cutting policy as decorators rather than duplicated per channel",
+    "Why decorator stacking order changes behaviour",
+    "Distinguishing a deliberate suppression from a retryable failure",
+    "Per-channel delivery preferences, not per-user",
+    "Injecting transports and clocks so delivery policy is testable"
+  ],
+  "entrypoint": "src/main.py",
+  "tests": "tests",
+  "estimatedMinutes": 55,
+  "askedAt": ["Uber", "Swiggy", "Atlassian", "Amazon", "Twilio"],
+  "diagram": { "mermaid": true },
+  "extensions": [
+    "Deliver asynchronously through a queue with a dead letter queue",
+    "Add templating and localisation for message bodies",
+    "Fall back to the next channel when the preferred one fails",
+    "Add scheduled and digest notifications",
+    "Add a circuit breaker so a dead provider is not hammered",
+    "Respect per-user quiet hours and time zones"
+  ]
+}
