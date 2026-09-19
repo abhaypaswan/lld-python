@@ -1,7 +1,7 @@
 """Runnable demo for the vending machine design.
 
-    python3 src/main.py               # scripted walkthrough
-    python3 src/main.py --interactive # drive it yourself
+python3 src/main.py               # scripted walkthrough
+python3 src/main.py --interactive # drive it yourself
 """
 
 from __future__ import annotations
@@ -33,12 +33,12 @@ SCRIPT = [
     "dispense",
     "status",
     "insert quarter",
-    "select A1",           # 25 is not enough for a 75c Coke
+    "select A1",  # 25 is not enough for a 75c Coke
     "insert quarter",
     "insert quarter",
     "select A1",
     "dispense",
-    "select A1",           # now sold out
+    "select A1",  # now sold out
     "insert dollar",
     "refund",
     "status",

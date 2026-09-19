@@ -1,7 +1,6 @@
 """A controllable clock, so fee tests do not depend on how fast they run."""
 
 import pytest
-
 from parking_lot import ParkingLot
 
 HOUR = 3600

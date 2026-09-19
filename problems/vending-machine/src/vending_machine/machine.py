@@ -102,5 +102,7 @@ class VendingMachine:
         lines = [f"State: {self.state} — {self.state.prompt}", f"Balance: {self.balance}"]
         for slot in self.inventory.slots:
             stock = "sold out" if slot.is_empty else f"{slot.quantity} left"
-            lines.append(f"  {slot.item.code}  {slot.item.name:<14} {slot.item.price:>4}  ({stock})")
+            lines.append(
+                f"  {slot.item.code}  {slot.item.name:<14} {slot.item.price:>4}  ({stock})"
+            )
         return "\n".join(lines)

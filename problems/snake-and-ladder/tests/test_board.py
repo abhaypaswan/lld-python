@@ -1,7 +1,6 @@
 """The board is where the fiddly rules live, so it gets the most tests."""
 
 import pytest
-
 from snake_and_ladder.model import Board, Ladder, Snake
 
 

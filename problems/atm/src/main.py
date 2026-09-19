@@ -1,7 +1,7 @@
 """Runnable demo for the ATM.
 
-    python3 src/main.py                # scripted session
-    python3 src/main.py --interactive  # drive it yourself
+python3 src/main.py                # scripted session
+python3 src/main.py --interactive  # drive it yourself
 """
 
 from __future__ import annotations
@@ -70,7 +70,8 @@ def run(machine: ATM, line: str, note: str | None = None) -> None:
         elif action == "deposit":
             print(f"  New balance: {machine.deposit(int(args[0]))}")
         elif action == "transfer":
-            print(f"  Sent {args[1]} to {args[0]}. Balance: {machine.transfer(args[0], int(args[1]))}")
+            balance = machine.transfer(args[0], int(args[1]))
+            print(f"  Sent {args[1]} to {args[0]}. Balance: {balance}")
         elif action == "status":
             print("  " + machine.status().replace("\n", "\n  "))
         elif action == "eject":

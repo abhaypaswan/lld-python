@@ -6,7 +6,7 @@ from enum import Enum
 
 from .board import Board
 from .move import Move
-from .pieces import Color, Piece, Queen
+from .pieces import Color, Queen
 from .square import Square
 
 
@@ -110,11 +110,7 @@ class Game:
             if candidate.target == target:
                 break
         else:
-            reason = (
-                " (your king is in check)"
-                if self.board.is_in_check(self.to_move)
-                else ""
-            )
+            reason = " (your king is in check)" if self.board.is_in_check(self.to_move) else ""
             raise IllegalMove(f"{piece} cannot move from {origin} to {target}{reason}")
 
         is_reset = candidate.is_capture or piece.symbol == "P"

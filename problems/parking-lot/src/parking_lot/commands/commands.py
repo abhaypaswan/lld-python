@@ -80,10 +80,7 @@ class FreeParkingSpotCommand(Command):
     def execute(self, spot_number, vehicle_type):
         manager = self.lot.factory.get_spot_manager(vehicle_type)
         vehicle = manager.free_parking_spot(spot_number)
-        return (
-            f"Parking spot {spot_number} is now available "
-            f"({vehicle.registration_no} has left)."
-        )
+        return f"Parking spot {spot_number} is now available ({vehicle.registration_no} has left)."
 
 
 class AddParkingSpotCommand(Command):
@@ -176,8 +173,7 @@ class StatusCommand(Command):
         lines = []
         for manager in self.lot.factory.all_managers():
             lines.append(
-                f"{manager.vehicle_type}: "
-                f"{manager.available_spots} free of {manager.total_spots}"
+                f"{manager.vehicle_type}: {manager.available_spots} free of {manager.total_spots}"
             )
         return "\n".join(lines)
 

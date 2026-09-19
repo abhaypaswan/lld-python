@@ -29,9 +29,7 @@ class MoveResult:
         lines = [f"{self.player} rolled {self.dice_roll}"]
 
         if self.skipped:
-            lines.append(
-                f"{self.player} would overshoot the last square, so the turn is skipped."
-            )
+            lines.append(f"{self.player} would overshoot the last square, so the turn is skipped.")
         else:
             if self.jump is not None:
                 lines.append(f"({self.jump.describe()})")

@@ -1,7 +1,6 @@
 """Movement, legality, and the endings people get wrong."""
 
 import pytest
-
 from chess import (
     Bishop,
     Board,
@@ -137,8 +136,11 @@ def test_a_pawn_cannot_move_through_a_piece():
 
 def test_a_pawn_captures_diagonally_but_not_forward():
     board = empty_board(
-        e1=King(Color.WHITE), e4=Pawn(Color.WHITE), d5=Pawn(Color.BLACK),
-        e5=Pawn(Color.BLACK), a8=King(Color.BLACK),
+        e1=King(Color.WHITE),
+        e4=Pawn(Color.WHITE),
+        d5=Pawn(Color.BLACK),
+        e5=Pawn(Color.BLACK),
+        a8=King(Color.BLACK),
     )
 
     assert targets(board, "e4") == {"d5"}, "e5 is blocked, d5 is a capture"
@@ -200,8 +202,11 @@ def test_en_passant_removes_the_pawn_beside_you_not_in_front():
 
 def test_en_passant_expires_after_one_move():
     board = empty_board(
-        e1=King(Color.WHITE), e5=Pawn(Color.WHITE), d7=Pawn(Color.BLACK),
-        a7=Pawn(Color.BLACK), h8=King(Color.BLACK),
+        e1=King(Color.WHITE),
+        e5=Pawn(Color.WHITE),
+        d7=Pawn(Color.BLACK),
+        a7=Pawn(Color.BLACK),
+        h8=King(Color.BLACK),
     )
     game = Game(board, to_move=Color.BLACK)
     game.move("d7", "d5")
@@ -230,8 +235,11 @@ def test_undoing_en_passant_puts_the_pawn_back():
 
 def castling_position(**extra):
     return empty_board(
-        e1=King(Color.WHITE), a1=Rook(Color.WHITE), h1=Rook(Color.WHITE),
-        e8=King(Color.BLACK), **extra,
+        e1=King(Color.WHITE),
+        a1=Rook(Color.WHITE),
+        h1=Rook(Color.WHITE),
+        e8=King(Color.BLACK),
+        **extra,
     )
 
 
@@ -377,8 +385,13 @@ def test_fools_mate():
 def test_scholars_mate():
     game = Game()
     for origin, target in (
-        ("e2", "e4"), ("e7", "e5"), ("f1", "c4"), ("b8", "c6"),
-        ("d1", "h5"), ("g8", "f6"), ("h5", "f7"),
+        ("e2", "e4"),
+        ("e7", "e5"),
+        ("f1", "c4"),
+        ("b8", "c6"),
+        ("d1", "h5"),
+        ("g8", "f6"),
+        ("h5", "f7"),
     ):
         game.move(origin, target)
 

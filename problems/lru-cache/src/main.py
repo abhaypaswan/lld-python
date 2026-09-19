@@ -1,7 +1,7 @@
 """Runnable demo: the same access pattern under three eviction policies.
 
-    python3 src/main.py
-    python3 src/main.py --capacity 4
+python3 src/main.py
+python3 src/main.py --capacity 4
 """
 
 from __future__ import annotations

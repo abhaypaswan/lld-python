@@ -174,9 +174,9 @@ amount is known to be makeable does anything move:
 
 ```python
 def dispense(self, amount):
-    plan = self.plan(amount)          # may raise; nothing has changed yet
+    plan = self.plan(amount)  # may raise; nothing has changed yet
     for denomination, count in plan.items():
-        self.inventory[denomination] -= count   # commit
+        self.inventory[denomination] -= count  # commit
     return plan
 ```
 
@@ -189,9 +189,9 @@ are different claims.
 Same principle, one level up:
 
 ```python
-plan = self.atm.dispenser.plan(amount)   # 1. can we even make this?
-account.debit(amount)                     # 2. take the money
-self.atm.dispenser.dispense(amount)       # 3. hand over the notes
+plan = self.atm.dispenser.plan(amount)  # 1. can we even make this?
+account.debit(amount)  # 2. take the money
+self.atm.dispenser.dispense(amount)  # 3. hand over the notes
 ```
 
 Debiting first and *then* discovering the machine cannot make the amount means

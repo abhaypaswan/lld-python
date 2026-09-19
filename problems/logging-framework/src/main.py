@@ -1,6 +1,6 @@
 """Runnable demo for the logging framework.
 
-    python3 src/main.py
+python3 src/main.py
 """
 
 from __future__ import annotations

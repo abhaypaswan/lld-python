@@ -1,7 +1,7 @@
 """Runnable demo: a morning rush through one bank of elevators.
 
-    python3 src/main.py
-    python3 src/main.py --strategy nearest
+python3 src/main.py
+python3 src/main.py --strategy nearest
 """
 
 from __future__ import annotations
@@ -81,9 +81,7 @@ def main(argv: list[str] | None = None) -> int:
     print("-" * 50)
     for strategy in STRATEGIES:
         result = simulate(strategy, verbose=False)
-        print(
-            f"{strategy:<14} {result['ticks']:>7} {result['floors']:>18} {result['stops']:>7}"
-        )
+        print(f"{strategy:<14} {result['ticks']:>7} {result['floors']:>18} {result['stops']:>7}")
 
     print()
     print("There is no single winner here, which is the point:")

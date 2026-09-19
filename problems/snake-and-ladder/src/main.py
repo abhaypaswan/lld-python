@@ -68,7 +68,20 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     return parser.parse_args(argv)
 
 
+DEFAULT_PLAYERS = ["Alice", "Bob"]
+
+
 def prompt_for_players() -> list[str]:
+    """Ask who is playing, falling back to two players when nobody can answer.
+
+    Piped or redirected stdin means there is no one at the keyboard -- CI, or a
+    `python3 src/main.py < /dev/null`. Prompting there hangs forever, so the
+    demo just plays itself instead.
+    """
+    if not sys.stdin.isatty():
+        print(f"(no terminal attached, playing {' vs '.join(DEFAULT_PLAYERS)})")
+        return list(DEFAULT_PLAYERS)
+
     count = int(input("How many players are playing? "))
     return [input(f"Enter player {i + 1} name: ").strip() for i in range(count)]
 

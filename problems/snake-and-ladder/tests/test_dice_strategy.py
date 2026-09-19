@@ -3,7 +3,6 @@
 import random
 
 import pytest
-
 from snake_and_ladder.game_logic import (
     CrookedDiceRollStrategy,
     FairDiceRollStrategy,

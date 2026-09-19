@@ -3,7 +3,6 @@
 import random
 
 import pytest
-
 from tic_tac_toe import (
     BotPlayer,
     Cell,
@@ -179,8 +178,12 @@ def test_observers_see_every_move(game):
 
 
 def test_a_random_bot_only_plays_free_squares():
-    game = Game([BotPlayer("X", RandomStrategy(random.Random(1))),
-                 BotPlayer("O", RandomStrategy(random.Random(2)))])
+    game = Game(
+        [
+            BotPlayer("X", RandomStrategy(random.Random(1))),
+            BotPlayer("O", RandomStrategy(random.Random(2))),
+        ]
+    )
 
     game.play(show=False)
 
@@ -197,10 +200,12 @@ def test_two_perfect_players_always_draw():
 
 @pytest.mark.parametrize("seed", range(8))
 def test_a_perfect_player_never_loses_to_a_random_one(seed):
-    game = Game([
-        BotPlayer("X", RandomStrategy(random.Random(seed))),
-        BotPlayer("O", MinimaxStrategy()),
-    ])
+    game = Game(
+        [
+            BotPlayer("X", RandomStrategy(random.Random(seed))),
+            BotPlayer("O", MinimaxStrategy()),
+        ]
+    )
     game.play(show=False)
 
     assert game.winner is None or game.winner.symbol == "O"

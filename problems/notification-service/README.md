@@ -141,10 +141,8 @@ composes to arbitrary depth and the service cannot tell the difference:
 
 ```python
 RetryingChannel(
-    RateLimitedChannel(
-        DeduplicatingChannel(EmailChannel()),
-        limit=3, window=60),
-    attempts=2)
+    RateLimitedChannel(DeduplicatingChannel(EmailChannel()), limit=3, window=60), attempts=2
+)
 ```
 
 ### Order is not a detail
@@ -177,7 +175,7 @@ So `DeliveryResult` carries `retryable`:
 
 ```python
 if not result.retryable:
-    return result          # suppressed on purpose; trying again cannot help
+    return result  # suppressed on purpose; trying again cannot help
 ```
 
 A transport timeout is retryable. A deliberate suppression is not. The
@@ -187,9 +185,11 @@ suppressions as failures shows an outage every time deduplication does its job.
 ### Preferences are per channel, not per user
 
 ```python
-Subscriber("alice",
+Subscriber(
+    "alice",
     addresses={"email": "alice@example.com", "sms": "+15550101"},
-    minimum_priority={"sms": Priority.URGENT})
+    minimum_priority={"sms": Priority.URGENT},
+)
 ```
 
 Alice gets everything by email and only urgent things by text. A single

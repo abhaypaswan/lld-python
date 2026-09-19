@@ -1,7 +1,6 @@
 """The turn loop."""
 
 import pytest
-
 from snake_and_ladder.game_logic import GameOver, SnakeLadderGame
 from snake_and_ladder.model import Ladder, Snake
 
@@ -34,9 +33,7 @@ def test_playing_on_after_a_win_is_an_error(scripted):
 def test_a_game_nobody_can_win_gives_up_instead_of_hanging(scripted):
     # Always rolling 2 on a 5-square board means you sit on 4 forever: 4 + 2
     # overshoots, so every turn is skipped.
-    game = SnakeLadderGame(
-        [], ["Alice"], dice_strategy=scripted([2]), max_position=5, max_turns=50
-    )
+    game = SnakeLadderGame([], ["Alice"], dice_strategy=scripted([2]), max_position=5, max_turns=50)
 
     with pytest.raises(GameOver, match="No winner after 50 turns"):
         list(game.turns())

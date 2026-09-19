@@ -34,10 +34,7 @@ class SimpleFormatter(Formatter):
     name = "simple"
 
     def format(self, record: LogRecord) -> str:
-        line = (
-            f"{self._timestamp(record)} [{record.level}] "
-            f"{record.logger_name}: {record.message}"
-        )
+        line = f"{self._timestamp(record)} [{record.level}] {record.logger_name}: {record.message}"
         if record.context:
             line += " " + " ".join(f"{k}={v}" for k, v in sorted(record.context.items()))
         return line

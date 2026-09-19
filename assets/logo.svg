@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="Low Level Design in Python">
+  <title>Low Level Design in Python</title>
+
+  <defs>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4f8ef7"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="node" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffde57"/>
+      <stop offset="1" stop-color="#f5b700"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Backing disc. Deliberately mid-tone so the mark reads on both a light
+       and a dark README background without two separate files. -->
+  <circle cx="120" cy="120" r="112" fill="#1b2130"/>
+  <circle cx="120" cy="120" r="112" fill="none" stroke="url(#ring)" stroke-width="5"/>
+
+  <!-- A class diagram: one base box with three subclasses hanging off it.
+       That shape is what the whole repository is about. -->
+  <g stroke="url(#ring)" stroke-width="3.5" fill="none" stroke-linecap="round">
+    <path d="M120 96 v22"/>
+    <path d="M58 118 h124"/>
+    <path d="M58 118 v20 M120 118 v20 M182 118 v20"/>
+  </g>
+
+  <!-- Base class -->
+  <rect x="78" y="56" width="84" height="40" rx="9" fill="#2a3347" stroke="url(#ring)" stroke-width="3.5"/>
+  <circle cx="120" cy="76" r="9" fill="url(#node)"/>
+
+  <!-- Subclasses -->
+  <g fill="#2a3347" stroke="url(#ring)" stroke-width="3.5">
+    <rect x="30" y="138" width="56" height="38" rx="8"/>
+    <rect x="92" y="138" width="56" height="38" rx="8"/>
+    <rect x="154" y="138" width="56" height="38" rx="8"/>
+  </g>
+
+  <!-- Method rows inside each subclass -->
+  <g fill="#8fa6c9" opacity="0.85">
+    <rect x="40" y="149" width="36" height="4" rx="2"/>
+    <rect x="40" y="160" width="24" height="4" rx="2"/>
+    <rect x="102" y="149" width="36" height="4" rx="2"/>
+    <rect x="102" y="160" width="24" height="4" rx="2"/>
+    <rect x="164" y="149" width="36" height="4" rx="2"/>
+    <rect x="164" y="160" width="24" height="4" rx="2"/>
+  </g>
+
+  <text x="120" y="207" text-anchor="middle"
+        font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="20" font-weight="700" fill="#ffde57" letter-spacing="3">LLD</text>
+</svg>

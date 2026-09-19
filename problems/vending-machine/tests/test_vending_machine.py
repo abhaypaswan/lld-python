@@ -1,7 +1,6 @@
 """The state machine, one transition at a time."""
 
 import pytest
-
 from vending_machine import VendingMachine
 from vending_machine.model import CannotMakeChange, Coin, SoldOut
 from vending_machine.states import InvalidAction

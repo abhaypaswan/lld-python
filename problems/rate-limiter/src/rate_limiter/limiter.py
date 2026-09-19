@@ -31,9 +31,7 @@ class RateLimiter:
         self.limit = limit
         self.window = window
         self.clock = clock
-        self.algorithm_class = (
-            get_algorithm(algorithm) if isinstance(algorithm, str) else algorithm
-        )
+        self.algorithm_class = get_algorithm(algorithm) if isinstance(algorithm, str) else algorithm
         self.algorithm_kwargs = algorithm_kwargs
         self._buckets: dict[object, RateLimitAlgorithm] = {}
         self._last_seen: dict[object, float] = {}

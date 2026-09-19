@@ -1,8 +1,8 @@
 """Runnable demo for the chess design.
 
-    python3 src/main.py                 # replay a short game
-    python3 src/main.py --interactive   # play both sides
-    python3 src/main.py --perft 3       # count positions, to check move generation
+python3 src/main.py                 # replay a short game
+python3 src/main.py --interactive   # play both sides
+python3 src/main.py --perft 3       # count positions, to check move generation
 """
 
 from __future__ import annotations

@@ -1,8 +1,8 @@
 """Runnable demo for Tic Tac Toe.
 
-    python3 src/main.py                       # perfect bot vs random bot
-    python3 src/main.py --human               # play against the perfect bot
-    python3 src/main.py --size 4 --x random --o random
+python3 src/main.py                       # perfect bot vs random bot
+python3 src/main.py --human               # play against the perfect bot
+python3 src/main.py --size 4 --x random --o random
 """
 
 from __future__ import annotations

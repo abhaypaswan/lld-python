@@ -1,7 +1,6 @@
 """The two strategies, checked independently of the lot around them."""
 
 import pytest
-
 from parking_lot import ParkingLot
 from parking_lot.components import (
     FarthestParkingStrategy,

@@ -4,7 +4,6 @@ import io
 import json
 
 import pytest
-
 from logging_framework import (
     ConsoleHandler,
     FileHandler,
@@ -196,7 +195,8 @@ def test_a_per_call_field_beats_a_bound_one(logger, memory):
 
 def test_the_console_handler_sends_warnings_to_stderr(clock):
     out, err = io.StringIO(), io.StringIO()
-    logger = Logger("app", "debug", ConsoleHandler("debug", stream=out, error_stream=err), clock=clock)
+    handler = ConsoleHandler("debug", stream=out, error_stream=err)
+    logger = Logger("app", "debug", handler, clock=clock)
 
     logger.info("fine")
     logger.error("broken")

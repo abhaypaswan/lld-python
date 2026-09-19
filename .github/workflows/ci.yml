@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # 3.10 is the floor because the implementations use `X | None` in
+        # annotations that are evaluated at runtime by dataclasses.
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install dev dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Run the test suite
+        run: python -m pytest problems -q
+
+      - name: Check every problem is complete and consistent
+        run: python scripts/validate.py
+
+      - name: Check the catalog and README table are up to date
+        run: python scripts/build_catalog.py --check
+
+  demos:
+    # Every problem advertises a runnable demo. This makes sure they all still
+    # run, which the unit tests do not cover.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run every problem's demo
+        run: |
+          set -e
+          failed=0
+          for problem in problems/*/; do
+            slug=$(basename "$problem")
+            printf '%-22s' "$slug"
+            if (cd "$problem" && timeout 120 python src/main.py > /dev/null 2>&1); then
+              echo "ok"
+            else
+              echo "FAILED"
+              failed=1
+            fi
+          done
+          exit $failed
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Lint
+        run: |
+          pip install ruff
+          ruff check .
+          ruff format --check .

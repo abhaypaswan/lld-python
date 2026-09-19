@@ -1,7 +1,6 @@
 """Every algorithm, driven by a clock the test controls."""
 
 import pytest
-
 from rate_limiter import RateLimiter
 from rate_limiter.algorithms import (
     FixedWindowCounter,
@@ -111,7 +110,7 @@ def test_a_limit_has_to_be_positive(algorithm):
 
 
 def test_token_bucket_lets_an_idle_client_burst(clock):
-    bucket = TokenBucket(limit=10, window=10.0)   # one token per second
+    bucket = TokenBucket(limit=10, window=10.0)  # one token per second
     for _ in range(10):
         bucket.allow(0.0)
     assert not bucket.allow(0.0)

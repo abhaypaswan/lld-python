@@ -94,7 +94,10 @@ class RetryingChannel(ChannelDecorator):
                 self.sleep(self.backoff * (2 ** (attempt - 1)))
 
         return DeliveryResult(
-            notification, self.name, False, f"gave up after {self.attempts}: {last_error}",
+            notification,
+            self.name,
+            False,
+            f"gave up after {self.attempts}: {last_error}",
             attempts=self.attempts,
         )
 
@@ -132,7 +135,9 @@ class RateLimitedChannel(ChannelDecorator):
 
         if len(recent) >= self.limit:
             return DeliveryResult(
-                notification, self.name, False,
+                notification,
+                self.name,
+                False,
                 f"rate limited: {self.limit} per {self.window:g}s for {notification.recipient}",
                 retryable=False,
             )
@@ -170,7 +175,9 @@ class DeduplicatingChannel(ChannelDecorator):
 
         if last_sent is not None and now - last_sent < self.window:
             return DeliveryResult(
-                notification, self.name, False,
+                notification,
+                self.name,
+                False,
                 f"duplicate of a notification sent {now - last_sent:.0f}s ago",
                 retryable=False,
             )

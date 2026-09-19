@@ -75,7 +75,7 @@ class Board:
 
         self._grid[cell.row][cell.column] = symbol
         self._moves += 1
-        return self._bump(cell, symbol, +1) 
+        return self._bump(cell, symbol, +1)
 
     def undo(self, cell: Cell) -> None:
         """Take a move back, counters and all.
@@ -116,9 +116,7 @@ class Board:
 
     def render(self) -> str:
         divider = "\n" + "---+" * (self.size - 1) + "---\n"
-        return divider.join(
-            "|".join(f" {value or ' '} " for value in row) for row in self._grid
-        )
+        return divider.join("|".join(f" {value or ' '} " for value in row) for row in self._grid)
 
     def __str__(self) -> str:
         return self.render()

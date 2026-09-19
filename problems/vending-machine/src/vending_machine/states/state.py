@@ -12,7 +12,7 @@ adding a class.
 
 from __future__ import annotations
 
-from abc import ABC, abstractmethod
+from abc import ABC
 
 from ..model.coin import Coin
 from ..model.item import Item
@@ -22,7 +22,7 @@ class InvalidAction(Exception):
     """The machine cannot do that from the state it is currently in."""
 
 
-class VendingMachineState(ABC):
+class VendingMachineState(ABC):  # noqa: B024 - see below
     """One state of the machine.
 
     Every action defaults to refusing, with a message that says what the
@@ -34,6 +34,11 @@ class VendingMachineState(ABC):
     name: str = "state"
     #: What a user sees when they ask the machine what it wants.
     prompt: str = ""
+
+    #: No method here is abstract, which is the design and not an oversight.
+    #: Every action defaults to refusing, so a concrete state only has to write
+    #: the ones it permits. Marking them abstract would force each state to
+    #: reimplement every refusal it does not want to change.
 
     def __init__(self, machine):
         self.machine = machine

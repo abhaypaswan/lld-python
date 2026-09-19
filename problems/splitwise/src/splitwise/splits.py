@@ -66,8 +66,7 @@ class EqualSplit(SplitStrategy):
         count = len(participants)
         base, remainder = divmod(amount, count)
         shares = {
-            user: base + (1 if index < remainder else 0)
-            for index, user in enumerate(participants)
+            user: base + (1 if index < remainder else 0) for index, user in enumerate(participants)
         }
         return self._verify(shares, amount)
 
@@ -85,7 +84,8 @@ class ExactSplit(SplitStrategy):
 
         missing = set(participants) - set(self.amounts)
         if missing:
-            raise ValueError(f"No amount given for: {', '.join(str(u) for u in sorted(missing, key=str))}")
+            names = ", ".join(str(u) for u in sorted(missing, key=str))
+            raise ValueError(f"No amount given for: {names}")
 
         extra = set(self.amounts) - set(participants)
         if extra:
@@ -119,9 +119,7 @@ class PercentageSplit(SplitStrategy):
             raise ValueError(f"Percentages must add up to 100, got {total}")
 
         return self._verify(
-            _largest_remainder(
-                amount, {user: self.percentages[user] for user in participants}
-            ),
+            _largest_remainder(amount, {user: self.percentages[user] for user in participants}),
             amount,
         )
 
@@ -169,9 +167,7 @@ def _largest_remainder(amount: int, weights: dict[User, float]) -> dict[User, in
     shares = {user: int(value) for user, value in exact.items()}
 
     leftover = amount - sum(shares.values())
-    by_remainder = sorted(
-        exact, key=lambda user: (-(exact[user] - shares[user]), str(user))
-    )
+    by_remainder = sorted(exact, key=lambda user: (-(exact[user] - shares[user]), str(user)))
 
     for user in by_remainder[:leftover]:
         shares[user] += 1

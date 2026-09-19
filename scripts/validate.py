@@ -86,9 +86,7 @@ def structural_errors(problem: Problem) -> list[str]:
 
     declared_slug = meta.get("slug")
     if declared_slug and declared_slug != problem.slug:
-        errors.append(
-            f"slug is {declared_slug!r} but the directory is named {problem.slug!r}"
-        )
+        errors.append(f"slug is {declared_slug!r} but the directory is named {problem.slug!r}")
 
     if not problem.readme_path.is_file():
         errors.append("README.md is missing")

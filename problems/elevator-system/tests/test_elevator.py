@@ -1,7 +1,6 @@
 """The LOOK algorithm inside a car, and the scheduler in front of the bank."""
 
 import pytest
-
 from elevator_system import (
     Direction,
     Elevator,
@@ -162,7 +161,7 @@ def test_a_hall_call_must_state_a_direction():
 
 def make_bank(*positions):
     system = ElevatorSystem(len(positions), 0, 20)
-    for elevator, floor in zip(system.elevators, positions):
+    for elevator, floor in zip(system.elevators, positions, strict=False):
         elevator.current_floor = floor
     return system
 

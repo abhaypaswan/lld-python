@@ -85,8 +85,9 @@ class ThroughputStrategy(SchedulingStrategy):
         available = self._available(elevators)
         if not available:
             return None
-        return min(available, key=lambda e: (self._tier(e, request), self._cost(e, request),
-                                             e.elevator_id))
+        return min(
+            available, key=lambda e: (self._tier(e, request), self._cost(e, request), e.elevator_id)
+        )
 
     @staticmethod
     def _tier(elevator: Elevator, request: ExternalRequest) -> int:

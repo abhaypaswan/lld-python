@@ -64,9 +64,7 @@ class Elevator:
         capacity: int = 8,
     ):
         if not min_floor <= current_floor <= max_floor:
-            raise ValueError(
-                f"Floor {current_floor} is outside the range {min_floor}-{max_floor}"
-            )
+            raise ValueError(f"Floor {current_floor} is outside the range {min_floor}-{max_floor}")
 
         self.elevator_id = elevator_id
         self.current_floor = current_floor
@@ -120,7 +118,9 @@ class Elevator:
     def request_floor(self, floor: int, direction: Direction | None = None) -> None:
         """Add a stop. `direction` says which way the rider wants to travel."""
         if not self.min_floor <= floor <= self.max_floor:
-            raise ValueError(f"Floor {floor} is outside the range {self.min_floor}-{self.max_floor}")
+            raise ValueError(
+                f"Floor {floor} is outside the range {self.min_floor}-{self.max_floor}"
+            )
         if self.state is ElevatorState.MAINTENANCE:
             raise ValueError(f"{self.elevator_id} is out of service")
 

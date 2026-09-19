@@ -1,7 +1,6 @@
 """A die that rolls exactly what the test tells it to."""
 
 import pytest
-
 from snake_and_ladder.game_logic import DiceRollStrategy
 
 

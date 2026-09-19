@@ -1,0 +1,614 @@
+{
+  "$schema": "./schema/problem.schema.json",
+  "version": 1,
+  "source": "https://github.com/abhaypaswan/lld-python",
+  "count": 12,
+  "patterns": [
+    "chain-of-responsibility",
+    "command",
+    "decorator",
+    "facade",
+    "factory-method",
+    "observer",
+    "singleton",
+    "state",
+    "strategy",
+    "template-method"
+  ],
+  "tags": [
+    "algorithms",
+    "api",
+    "beginner-friendly",
+    "board-game",
+    "cache",
+    "classic",
+    "command-line",
+    "concurrency",
+    "data-structures",
+    "dice",
+    "distributed-systems",
+    "extensibility",
+    "fan-out",
+    "fintech",
+    "game",
+    "graph",
+    "hard",
+    "infrastructure",
+    "inventory",
+    "ledger",
+    "library-design",
+    "linked-list",
+    "messaging",
+    "minimax",
+    "money",
+    "most-asked",
+    "observability",
+    "payments",
+    "performance",
+    "pricing",
+    "recursion",
+    "reliability",
+    "resource-allocation",
+    "rules-engine",
+    "safety",
+    "scheduling",
+    "simulation",
+    "state-machine",
+    "throttling",
+    "transactions",
+    "turn-based"
+  ],
+  "problems": [
+    {
+      "slug": "tic-tac-toe",
+      "title": "Design Tic Tac Toe",
+      "difficulty": "easy",
+      "summary": "Play on an N x N board with O(1) win detection using per-line counters instead of scanning, and a bot whose difficulty is a swappable strategy — random, or a minimax player that provably never loses.",
+      "tags": [
+        "game",
+        "board-game",
+        "algorithms",
+        "minimax",
+        "beginner-friendly"
+      ],
+      "patterns": [
+        "strategy",
+        "observer"
+      ],
+      "concepts": [
+        "O(1) win detection with incremental line counters",
+        "Undo on the board so minimax can explore without copying it",
+        "Separating who moves from how a bot decides",
+        "Depth-aware minimax scoring, and alpha-beta pruning",
+        "Injecting the input source so a human player is testable"
+      ],
+      "entrypoint": "src/main.py",
+      "tests": "tests",
+      "estimatedMinutes": 40,
+      "askedAt": [
+        "Amazon",
+        "Microsoft",
+        "Adobe",
+        "Zomato"
+      ],
+      "diagram": {
+        "mermaid": true
+      },
+      "extensions": [
+        "Generalise to k-in-a-row on an N x N board",
+        "Add more than two players",
+        "Add undo and redo for human players",
+        "Add a medium-difficulty bot that makes deliberate mistakes",
+        "Persist and resume a game in progress"
+      ],
+      "path": "problems/tic-tac-toe"
+    },
+    {
+      "slug": "snake-and-ladder",
+      "title": "Snake and Ladder",
+      "difficulty": "easy",
+      "summary": "Build a turn-based Snake and Ladder game where the die can be swapped between fair and crooked without touching the game loop, and the board refuses layouts where one jump chains into another.",
+      "tags": [
+        "game",
+        "board-game",
+        "dice",
+        "turn-based",
+        "beginner-friendly"
+      ],
+      "patterns": [
+        "strategy"
+      ],
+      "concepts": [
+        "Dependency injection for randomness",
+        "Validating invariants at construction rather than at use",
+        "Returning values instead of printing, so the domain is testable"
+      ],
+      "entrypoint": "src/main.py",
+      "tests": "tests",
+      "estimatedMinutes": 45,
+      "askedAt": [
+        "Amazon",
+        "Flipkart",
+        "Swiggy"
+      ],
+      "diagram": {
+        "mermaid": true,
+        "light": "assets/class-diagram-light.png",
+        "dark": "assets/class-diagram-dark.png",
+        "svg": "assets/class-diagram.svg"
+      },
+      "extensions": [
+        "Rolling a six earns the player another turn",
+        "Place snakes and ladders randomly at setup while keeping the no-chain rule",
+        "Support rolling more than one die per turn",
+        "Undo the last move",
+        "Save and resume a game in progress"
+      ],
+      "path": "problems/snake-and-ladder"
+    },
+    {
+      "slug": "splitwise",
+      "title": "Design Splitwise",
+      "difficulty": "medium",
+      "summary": "Track shared expenses across four split types where every split sums exactly to the total, keep one net balance per person instead of a debt matrix, and settle the whole group in at most n-1 payments.",
+      "tags": [
+        "fintech",
+        "ledger",
+        "money",
+        "graph",
+        "most-asked"
+      ],
+      "patterns": [
+        "strategy",
+        "observer"
+      ],
+      "concepts": [
+        "Integer money, and why floats break ledgers slowly",
+        "The largest remainder method for splits that do not divide evenly",
+        "Net balances instead of a who-owes-whom matrix",
+        "Greedy debt settlement, its n-1 bound, and why the true minimum is NP-hard",
+        "Freezing derived values so history cannot be rewritten"
+      ],
+      "entrypoint": "src/main.py",
+      "tests": "tests",
+      "estimatedMinutes": 60,
+      "askedAt": [
+        "Amazon",
+        "Uber",
+        "Swiggy",
+        "Razorpay",
+        "Flipkart"
+      ],
+      "diagram": {
+        "mermaid": true
+      },
+      "extensions": [
+        "Support multiple currencies and decide which exchange rate applies",
+        "Add groups, and decide whether balances are per group or global",
+        "Allow editing and deleting past expenses",
+        "Rotate who absorbs the rounding remainder across expenses",
+        "Restrict settlement suggestions to within a group",
+        "Handle concurrent expense creation"
+      ],
+      "path": "problems/splitwise"
+    },
+    {
+      "slug": "logging-framework",
+      "title": "Design a Logging Framework",
+      "difficulty": "medium",
+      "summary": "Route log records down a handler chain where every link applies its own threshold and format, so one chain can send everything to the console and only errors to a JSON file — and where the chain deliberately does not stop at the first handler that takes it.",
+      "tags": [
+        "infrastructure",
+        "observability",
+        "extensibility",
+        "library-design"
+      ],
+      "patterns": [
+        "chain-of-responsibility",
+        "strategy",
+        "singleton"
+      ],
+      "concepts": [
+        "Adapting a pattern rather than copying it: why a logging chain must not stop",
+        "Two thresholds serving different purposes: a cheap gate and per-sink filtering",
+        "Keeping format independent of destination to avoid a class per combination",
+        "When Singleton is genuinely correct, and what it costs in testability",
+        "Bound context for correlating records across a request"
+      ],
+      "entrypoint": "src/main.py",
+      "tests": "tests",
+      "estimatedMinutes": 45,
+      "askedAt": [
+        "Amazon",
+        "Salesforce",
+        "Oracle",
+        "Zoho"
+      ],
+      "diagram": {
+        "mermaid": true
+      },
+      "extensions": [
+        "Make delivery asynchronous with a queue and a writer thread",
+        "Rotate log files by size or date",
+        "Rate-limit repeated identical messages with a decorating handler",
+        "Support hierarchical loggers that inherit handlers from their parent",
+        "Make handlers safe for concurrent writers",
+        "Redact secrets before records are written"
+      ],
+      "path": "problems/logging-framework"
+    },
+    {
+      "slug": "notification-service",
+      "title": "Design a Notification Service",
+      "difficulty": "medium",
+      "summary": "Fan a message out to email, SMS, push and Slack according to each subscriber's per-channel priority threshold, with retry, rate limiting and deduplication written once as decorators that compose around any channel.",
+      "tags": [
+        "messaging",
+        "infrastructure",
+        "fan-out",
+        "reliability",
+        "most-asked"
+      ],
+      "patterns": [
+        "decorator",
+        "observer",
+        "factory-method",
+        "strategy"
+      ],
+      "concepts": [
+        "Cross-cutting policy as decorators rather than duplicated per channel",
+        "Why decorator stacking order changes behaviour",
+        "Distinguishing a deliberate suppression from a retryable failure",
+        "Per-channel delivery preferences, not per-user",
+        "Injecting transports and clocks so delivery policy is testable"
+      ],
+      "entrypoint": "src/main.py",
+      "tests": "tests",
+      "estimatedMinutes": 55,
+      "askedAt": [
+        "Uber",
+        "Swiggy",
+        "Atlassian",
+        "Amazon",
+        "Twilio"
+      ],
+      "diagram": {
+        "mermaid": true
+      },
+      "extensions": [
+        "Deliver asynchronously through a queue with a dead letter queue",
+        "Add templating and localisation for message bodies",
+        "Fall back to the next channel when the preferred one fails",
+        "Add scheduled and digest notifications",
+        "Add a circuit breaker so a dead provider is not hammered",
+        "Respect per-user quiet hours and time zones"
+      ],
+      "path": "problems/notification-service"
+    },
+    {
+      "slug": "parking-lot",
+      "title": "Design a Parking Lot",
+      "difficulty": "medium",
+      "summary": "Assign spots to arriving vehicles by a pluggable allocation strategy, charge for the stay on exit by a separate pricing strategy, and drive the whole thing from a command console where adding an operation never edits an existing one.",
+      "tags": [
+        "classic",
+        "resource-allocation",
+        "pricing",
+        "command-line",
+        "most-asked"
+      ],
+      "patterns": [
+        "strategy",
+        "factory-method",
+        "command",
+        "facade"
+      ],
+      "concepts": [
+        "Subclass versus constructor argument: when a difference is data, not behaviour",
+        "Deriving counts instead of maintaining a parallel counter",
+        "Injecting the clock so duration-based logic is testable",
+        "Open/closed dispatch through a command registry"
+      ],
+      "entrypoint": "src/main.py",
+      "tests": "tests",
+      "estimatedMinutes": 60,
+      "askedAt": [
+        "Amazon",
+        "Google",
+        "Uber",
+        "Flipkart",
+        "Microsoft",
+        "Swiggy"
+      ],
+      "diagram": {
+        "mermaid": true,
+        "light": "assets/class-diagram-light.png",
+        "dark": "assets/class-diagram-dark.png",
+        "svg": "assets/class-diagram.svg"
+      },
+      "extensions": [
+        "Make the lot safe for concurrent gates",
+        "Support multiple floors",
+        "Handle vehicles that occupy more than one spot",
+        "Allow a spot to be reserved ahead of arrival",
+        "Add surge pricing at peak hours by decorating a pricing strategy",
+        "Persist the lot state across restarts"
+      ],
+      "path": "problems/parking-lot"
+    },
+    {
+      "slug": "rate-limiter",
+      "title": "Design a Rate Limiter",
+      "difficulty": "medium",
+      "summary": "Implement token bucket, fixed window, sliding window log and sliding window counter behind one interface, and be able to say what each one gets wrong — starting with the boundary burst that lets a fixed window pass double its limit.",
+      "tags": [
+        "api",
+        "throttling",
+        "algorithms",
+        "distributed-systems",
+        "most-asked"
+      ],
+      "patterns": [
+        "strategy"
+      ],
+      "concepts": [
+        "Memory versus accuracy trade-offs between limiting algorithms",
+        "The fixed-window boundary burst, and two ways to fix it",
+        "Lazy token refill so idle clients cost nothing to track",
+        "Passing time in as a parameter so time-based logic is testable",
+        "Bounding per-client state so the bucket map is not a leak"
+      ],
+      "entrypoint": "src/main.py",
+      "tests": "tests",
+      "estimatedMinutes": 50,
+      "askedAt": [
+        "Stripe",
+        "Cloudflare",
+        "Amazon",
+        "Uber",
+        "Razorpay"
+      ],
+      "diagram": {
+        "mermaid": true
+      },
+      "extensions": [
+        "Distribute the limiter across servers using Redis",
+        "Support different limits per customer tier",
+        "Limit on several keys at once (user, IP and endpoint)",
+        "Decide whether to fail open or fail closed when the limiter is unavailable",
+        "Emit standard X-RateLimit and Retry-After headers"
+      ],
+      "path": "problems/rate-limiter"
+    },
+    {
+      "slug": "vending-machine",
+      "title": "Design a Vending Machine",
+      "difficulty": "medium",
+      "summary": "Model a vending machine as an explicit state machine where each state decides which actions it accepts, and where a machine that cannot make change leaves the item on the shelf and the buyer's money untouched.",
+      "tags": [
+        "classic",
+        "state-machine",
+        "payments",
+        "inventory",
+        "most-asked"
+      ],
+      "patterns": [
+        "state"
+      ],
+      "concepts": [
+        "Default-refuse base class so each state only writes what it supports",
+        "Ordering operations so a failure leaves no partial change behind",
+        "Escrow: refunding the coins inserted rather than making change",
+        "Integer money, and the limits of greedy change-making"
+      ],
+      "entrypoint": "src/main.py",
+      "tests": "tests",
+      "estimatedMinutes": 50,
+      "askedAt": [
+        "Amazon",
+        "Adobe",
+        "Uber",
+        "PhonePe"
+      ],
+      "diagram": {
+        "mermaid": true
+      },
+      "extensions": [
+        "Accept card payment alongside coins",
+        "Show an 'exact change only' indicator before money is inserted",
+        "Make the machine safe for concurrent buyers",
+        "Record a purchase history using Observer",
+        "Return the balance automatically after a period of inactivity"
+      ],
+      "path": "problems/vending-machine"
+    },
+    {
+      "slug": "atm",
+      "title": "Design an ATM",
+      "difficulty": "medium",
+      "summary": "Model an ATM as a state machine where each state permits only what is safe from it, and build the note dispenser as a chain of denomination handlers that plans the full amount before a single note leaves the box.",
+      "tags": [
+        "fintech",
+        "state-machine",
+        "transactions",
+        "safety",
+        "most-asked"
+      ],
+      "patterns": [
+        "state",
+        "chain-of-responsibility"
+      ],
+      "concepts": [
+        "States as a security boundary, not just a convenience",
+        "All-or-nothing dispensing: planning against a copy before committing",
+        "Ordering a debit and a dispense so a failure never costs the customer",
+        "Keeping the bank separate from the machine so it can be stubbed",
+        "Greedy note selection, and when it stops being correct"
+      ],
+      "entrypoint": "src/main.py",
+      "tests": "tests",
+      "estimatedMinutes": 60,
+      "askedAt": [
+        "Amazon",
+        "Goldman Sachs",
+        "PayPal",
+        "Visa",
+        "Paytm"
+      ],
+      "diagram": {
+        "mermaid": true
+      },
+      "extensions": [
+        "Add a transaction log that survives a power cut mid-dispense",
+        "Support multiple currencies in one machine",
+        "Add card types with different daily limits and fees",
+        "Handle a network outage to the bank with offline limits",
+        "Make the machine safe against concurrent sessions on a shared cash box",
+        "Add receipt printing and mini-statements"
+      ],
+      "path": "problems/atm"
+    },
+    {
+      "slug": "lru-cache",
+      "title": "Design an LRU Cache",
+      "difficulty": "medium",
+      "summary": "Build a fixed-capacity cache with O(1) get and put, backed by a hand-written doubly linked list, whose eviction rule swaps between LRU, LFU and FIFO without the cache learning what any of them mean.",
+      "tags": [
+        "cache",
+        "data-structures",
+        "linked-list",
+        "performance",
+        "most-asked"
+      ],
+      "patterns": [
+        "strategy",
+        "template-method"
+      ],
+      "concepts": [
+        "Hash map plus doubly linked list for O(1) reordering",
+        "Sentinel nodes to remove null checks from pointer surgery",
+        "O(1) LFU via frequency buckets and an incrementally tracked minimum",
+        "Overwrite is not insert: why treating it as one empties the cache",
+        "Injecting the clock so TTL tests do not sleep"
+      ],
+      "entrypoint": "src/main.py",
+      "tests": "tests",
+      "estimatedMinutes": 45,
+      "askedAt": [
+        "Google",
+        "Amazon",
+        "Meta",
+        "Microsoft",
+        "Atlassian"
+      ],
+      "diagram": {
+        "mermaid": true
+      },
+      "extensions": [
+        "Make the cache thread-safe, then shard it by key hash",
+        "Bound capacity by bytes rather than entry count",
+        "Add write-through to a backing store",
+        "Expire keys eagerly with a background sweep instead of on read",
+        "Support per-tenant caches under one global capacity limit"
+      ],
+      "path": "problems/lru-cache"
+    },
+    {
+      "slug": "chess",
+      "title": "Design Chess",
+      "difficulty": "hard",
+      "summary": "Give each piece responsibility for how it moves, make every move an undoable command, and decide legality by playing a move and asking whether your own king is now attacked — verified against known perft counts to depth four.",
+      "tags": [
+        "game",
+        "board-game",
+        "rules-engine",
+        "recursion",
+        "hard"
+      ],
+      "patterns": [
+        "strategy",
+        "command",
+        "template-method",
+        "observer"
+      ],
+      "concepts": [
+        "Pseudo-legal versus legal moves, and why the split is necessary",
+        "Make/unmake as the mechanism that makes legality decidable",
+        "Capturing everything a move needs to reverse itself, at the time it is made",
+        "Why a pawn's attacks differ from its moves",
+        "Deriving game status from the position rather than caching it",
+        "Perft as a correctness check on move generation"
+      ],
+      "entrypoint": "src/main.py",
+      "tests": "tests",
+      "estimatedMinutes": 90,
+      "askedAt": [
+        "Google",
+        "Amazon",
+        "Microsoft",
+        "Directi",
+        "Uber"
+      ],
+      "diagram": {
+        "mermaid": true
+      },
+      "extensions": [
+        "Add threefold repetition as a draw condition",
+        "Import and export FEN and PGN",
+        "Add an engine with minimax and alpha-beta over this move generator",
+        "Switch to bitboards and measure the difference against perft",
+        "Support variants such as Chess960 where castling squares differ",
+        "Add a clock with increment and flag-fall"
+      ],
+      "path": "problems/chess"
+    },
+    {
+      "slug": "elevator-system",
+      "title": "Design an Elevator System",
+      "difficulty": "hard",
+      "summary": "Run a bank of elevators where each car follows the LOOK algorithm — sweep one way serving every stop, reverse only when nothing is ahead — and the choice of which car answers a hall call is a strategy that can be tuned without any car noticing.",
+      "tags": [
+        "simulation",
+        "scheduling",
+        "state-machine",
+        "concurrency",
+        "most-asked"
+      ],
+      "patterns": [
+        "strategy",
+        "state",
+        "observer"
+      ],
+      "concepts": [
+        "The LOOK/SCAN algorithm, and why nearest-first starves riders",
+        "Serving a stop only in the direction the rider wants to travel",
+        "Hall calls and car calls as genuinely different request types",
+        "Separating which car is chosen from how a car behaves once chosen",
+        "Tick-based simulation so scheduling is testable without threads",
+        "Wall-clock time versus total distance as competing objectives"
+      ],
+      "entrypoint": "src/main.py",
+      "tests": "tests",
+      "estimatedMinutes": 75,
+      "askedAt": [
+        "Amazon",
+        "Google",
+        "Uber",
+        "Microsoft",
+        "Flipkart"
+      ],
+      "diagram": {
+        "mermaid": true
+      },
+      "extensions": [
+        "Run each elevator on its own thread with a real controller",
+        "Add weight-based capacity so a full car skips hall calls",
+        "Add express elevators that serve only some floors",
+        "Add emergency and fire-service modes that override scheduling",
+        "Add destination dispatch, where riders enter their floor in the lobby",
+        "Handle a car that fails mid-journey and reassign its riders"
+      ],
+      "path": "problems/elevator-system"
+    }
+  ]
+}

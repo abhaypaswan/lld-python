@@ -146,7 +146,7 @@ def handle(self, record):
     if record.level >= self.level:
         self.emit(self.formatter.format(record), record)
     if self._next is not None:
-        self._next.handle(record)      # unconditional
+        self._next.handle(record)  # unconditional
 ```
 
 Naming that departure — and why — is worth more in an interview than

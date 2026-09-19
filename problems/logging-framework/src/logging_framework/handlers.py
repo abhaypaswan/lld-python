@@ -32,7 +32,8 @@ class Handler(ABC):
     ):
         self.level = LogLevel.parse(level)
         self.formatter = (
-            get_formatter(formatter) if isinstance(formatter, str)
+            get_formatter(formatter)
+            if isinstance(formatter, str)
             else (formatter or SimpleFormatter())
         )
         self._next: Handler | None = None
@@ -62,8 +63,13 @@ class Handler(ABC):
         without parsing the text back out of its own output.
         """
 
-    def close(self) -> None:
-        """Release anything held open. Safe to call more than once."""
+    def close(self) -> None:  # noqa: B027
+        """Release anything held open. Safe to call more than once.
+
+        Deliberately concrete and empty rather than abstract: most handlers
+        hold nothing open, and forcing all of them to write `pass` would be
+        noise. Only FileHandler overrides it.
+        """
 
 
 class ConsoleHandler(Handler):
@@ -139,6 +145,6 @@ def build_chain(*handlers: Handler) -> Handler | None:
     if not handlers:
         return None
 
-    for current, following in zip(handlers, handlers[1:]):
+    for current, following in zip(handlers, handlers[1:], strict=False):
         current.set_next(following)
     return handlers[0]

@@ -1,7 +1,6 @@
 """The doubly linked list on its own, since it is the load-bearing part."""
 
 import pytest
-
 from lru_cache.linked_list import DoublyLinkedList, Node
 
 

@@ -1,7 +1,6 @@
 """The state machine, the dispenser chain, and the all-or-nothing guarantee."""
 
 import pytest
-
 from atm import ATM, Bank, CashDispenser, Denomination, InsufficientCash, InsufficientFunds
 from atm.bank import AuthenticationFailed
 from atm.states import InvalidOperation

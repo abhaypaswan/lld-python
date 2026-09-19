@@ -1,157 +1,189 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
 
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][website-shield]][website-url]
+[![Website][website-shield]][website-url]
 
-
-
-<!-- PROJECT LOGO -->
-<br />
 <div align="center">
   <a href="https://github.com/abhaypaswan/lld-python">
-    <img src="https://firebasestorage.googleapis.com/v0/b/techprimer-fbfe6.appspot.com/o/boy_coding2-removebg.png?alt=media&token=8b86815b-ba37-47e6-84b2-c3eb68b39a26" alt="Logo" width="280" height="280">
+    <img src="assets/logo.svg" alt="Low Level Design in Python" width="200" height="200">
   </a>
 
-
-  <h3 align="center">Low Level Design</h3>
+  <h3 align="center">Low Level Design in Python</h3>
 
   <p align="center">
-    Dedicated resources for Low Level Design/Machine Coding Interview
+    Working implementations of the design problems that actually get asked in machine coding rounds
     <br />
-    <a href="https://scale.algostreak.com"><strong>Checkout the Web App »</strong></a>
+    <a href="https://goatengineer.com"><strong>Practise these on GOAT Engineer »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/abhaypaswan/lld-python/issues">Report Bug</a>
+    <a href="https://github.com/abhaypaswan/lld-python/issues">Report a bug</a>
     ·
-    <a href="https://github.com/abhaypaswan/lld-python/issues">Request Problem</a>
+    <a href="https://github.com/abhaypaswan/lld-python/issues">Request a problem</a>
   </p>
 </div>
 
+## About
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#low-level-design-problems-list">Low Level Design Problems</a>
-      <ul>
-        <li><a href="#problem-1-design-parking-lot">Design Parking Lot</a></li>
-        <li><a href="#problem-2-snake-and-ladder">Snake and Ladder</a></li>
-      </ul>
-    </li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details>
+Low-level design is badly served by the internet. DSA has structured practice —
+graded problems, a judge that tells you whether you were right. LLD has blog
+posts with a class diagram, no code, and no way to tell whether the design
+actually holds up.
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
-Speaking for myself, it is frustrating to try to find helpful resources on low-level design problems online. The information is often scattered across various websites, forums, and blogs, which makes it difficult to find a comprehensive and structured learning experience unlike what is available for DSA. So that's why I felt motivated to create a [platform](https://scale.algostreak.com/) where users can find low-level designs and their implementations side by side. 
-![Demo App Screenshot](https://firebasestorage.googleapis.com/v0/b/techprimer-fbfe6.appspot.com/o/app_demo.png?alt=media&token=95a9b08e-badc-443b-a661-849a5da51e6f)
+This repository is the other thing: every problem here has a **working
+implementation you can run**, a **test suite that pins down the behaviour that
+matters**, and a write-up explaining why the design is shaped the way it is —
+including the bugs the shape prevents.
 
-### Built With
-* [![Python][Python]][Python-url]
-* [![Flutter][Flutter]][Flutter-url]
-* [![Dart][Dart]][Dart-url]
+These problems back the LLD track on **[GOAT Engineer](https://goatengineer.com)**.
 
-<!-- LOW LEVEL DESIGN PROBLEMS LIST -->
-## LOW LEVEL DESIGN PROBLEMS LIST
+### What a problem looks like
 
-### Problem 1: [Design Parking Lot](https://github.com/abhaypaswan/lld-python/tree/main/Design_Parking_Lot)
-Design a parking lot that can efficiently manage the parking and retrieval of vehicles, with the added feature of being able to identify the color of each vehicle and the registration number. The parking lot should also be able to handle different types of vehicles, such as cars, motorcycles, and buses. [(Read More...)](https://github.com/abhaypaswan/lld-python/blob/main/Design_Parking_Lot/problem-statement.md)
-![Parking Lot LLD](https://github.com/abhaypaswan/lld-python/blob/main/Design_Parking_Lot/design_parking_lot_dark.png)
+```
+problems/vending-machine/
+├── README.md      # statement, mermaid class diagram, design rationale, follow-ups
+├── meta.json      # machine-readable metadata (validated against schema/)
+├── src/
+│   ├── main.py    # runnable demo
+│   └── ...        # the implementation
+└── tests/         # pytest, asserting the behaviour the design exists to guarantee
+```
 
-### Problem 2: [Snake and Ladder](https://github.com/abhaypaswan/lld-python/tree/main/snake_and_ladder)
-Design a Snake and Ladder game with the following requirements:
+## Problems
 
-1. The board has a maximum position of 100.
-2. The game can be played with either a fair dice or a crooked dice that favors generating even numbers over odd ones.
-3. The number of players in the game should be decided by the user at the start of the game.
-4. Snakes and Ladders should be randomly placed on the board.
-5. Snakes and Ladders should not form a loop and the end point of a snake or ladder should not be the starting point for any other snake or ladder. [(Read More...)](https://github.com/abhaypaswan/lld-python/blob/main/snake_and_ladder/problem_statement.md)
-![Snake and Ladder LLD](https://github.com/abhaypaswan/lld-python/blob/main/snake_and_ladder/snakeladder_lld_dark.png)
-<!-- CONTRIBUTING -->
+<!-- BEGIN PROBLEM TABLE (generated by scripts/build_catalog.py) -->
+
+| # | Problem | Difficulty | Design Patterns | Time |
+| --- | --- | --- | --- | --- |
+| 1 | [Design Tic Tac Toe](problems/tic-tac-toe/) | 🟢 Easy | Strategy, Observer | 40 min |
+| 2 | [Snake and Ladder](problems/snake-and-ladder/) | 🟢 Easy | Strategy | 45 min |
+| 3 | [Design Splitwise](problems/splitwise/) | 🟡 Medium | Strategy, Observer | 60 min |
+| 4 | [Design a Logging Framework](problems/logging-framework/) | 🟡 Medium | Chain of Responsibility, Strategy, Singleton | 45 min |
+| 5 | [Design a Notification Service](problems/notification-service/) | 🟡 Medium | Decorator, Observer, Factory Method, Strategy | 55 min |
+| 6 | [Design a Parking Lot](problems/parking-lot/) | 🟡 Medium | Strategy, Factory Method, Command, Facade | 60 min |
+| 7 | [Design a Rate Limiter](problems/rate-limiter/) | 🟡 Medium | Strategy | 50 min |
+| 8 | [Design a Vending Machine](problems/vending-machine/) | 🟡 Medium | State | 50 min |
+| 9 | [Design an ATM](problems/atm/) | 🟡 Medium | State, Chain of Responsibility | 60 min |
+| 10 | [Design an LRU Cache](problems/lru-cache/) | 🟡 Medium | Strategy, Template Method | 45 min |
+| 11 | [Design Chess](problems/chess/) | 🔴 Hard | Strategy, Command, Template Method, Observer | 90 min |
+| 12 | [Design an Elevator System](problems/elevator-system/) | 🔴 Hard | Strategy, State, Observer | 75 min |
+
+<!-- END PROBLEM TABLE -->
+
+Every problem's README carries a mermaid class diagram that renders inline on
+GitHub, the reasoning behind each pattern used, and the follow-up questions an
+interviewer is likely to ask next.
+
+## Getting started
+
+```bash
+git clone https://github.com/abhaypaswan/lld-python.git
+cd lld-python
+pip install -r requirements-dev.txt
+```
+
+Run any problem's demo:
+
+```bash
+cd problems/parking-lot && python3 src/main.py
+```
+
+Run the whole test suite:
+
+```bash
+python3 -m pytest
+```
+
+Or one problem's:
+
+```bash
+python3 -m pytest problems/chess -v
+```
+
+## How this repository is put together
+
+Each problem lives in `problems/<slug>/` and is self-contained — you can read
+one top to bottom without touching anything else.
+
+The code in `src/<package>/` uses **only the standard library**. If a problem
+looks like it needs a dependency, that is usually a sign the design is doing
+something the problem did not ask for. `pytest` is for the tests, not the
+implementations.
+
+Every problem carries a `meta.json` describing its difficulty, the patterns it
+genuinely uses, and how long it should take. Those files validate against
+`schema/problem.schema.json` and build into `catalog.json`, which is what
+[GOAT Engineer](https://goatengineer.com) reads:
+
+```bash
+python3 scripts/validate.py        # check every problem is complete and consistent
+python3 scripts/build_catalog.py   # regenerate catalog.json and the table above
+```
+
+The problem table in this README is generated. Edit a `meta.json` and re-run the
+build rather than editing the table by hand.
+
+### A note on the tests
+
+The test suites are not there for coverage. Each one pins down the specific
+behaviour its design exists to guarantee, and several were written to fail
+first:
+
+- **vending-machine** — a machine that cannot make change leaves the item on
+  the shelf and the buyer's money untouched
+- **splitwise** — every equal split from 1 to 200 sums exactly to the total,
+  with nobody more than one cent out of step
+- **chess** — perft to depth 3 (8,902 positions), which proves `undo` fully
+  reverses `apply`
+- **tic-tac-toe** — two perfect players always draw; a perfect player never
+  loses to a random one, across eight seeds
+- **rate-limiter** — the fixed window *does* allow the boundary burst, so the
+  sliding variants can be shown to fix it
+
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are welcome — especially new problems.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+A new problem needs all five of: a `README.md` with a mermaid class diagram, a
+`meta.json` that passes `scripts/validate.py`, a runnable `src/main.py`, an
+implementation using only the standard library, and tests that cover the cases
+the design is meant to handle.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Fork the repository
+2. Create a branch (`git checkout -b problem/design-a-thing`)
+3. Run `python3 -m pytest` and `python3 scripts/validate.py`
+4. Run `python3 scripts/build_catalog.py` to refresh the catalog
+5. Open a pull request
+
+CI runs the tests, the validator, and a check that the catalog is up to date.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+MIT. See [`LICENSE`](LICENSE).
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTACT -->
 ## Contact
 
-Abhay Paswan - work.abhaypaswan@gmail.com
+Abhay Paswan — work.abhaypaswan@gmail.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/abhaypaswan/lld-python)
+Repository: [github.com/abhaypaswan/lld-python](https://github.com/abhaypaswan/lld-python)
+Platform: [goatengineer.com](https://goatengineer.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/abhaypaswan/lld-python.svg?style=for-the-badge
 [contributors-url]: https://github.com/abhaypaswan/lld-python/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/abhaypaswan/lld-python.svg?style=for-the-badge
 [forks-url]: https://github.com/abhaypaswan/lld-python/network/members
 [stars-shield]: https://img.shields.io/github/stars/abhaypaswan/lld-python.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[stars-url]: https://github.com/abhaypaswan/lld-python/stargazers
 [issues-shield]: https://img.shields.io/github/issues/abhaypaswan/lld-python.svg?style=for-the-badge
 [issues-url]: https://github.com/abhaypaswan/lld-python/issues
 [license-shield]: https://img.shields.io/github/license/abhaypaswan/lld-python.svg?style=for-the-badge
-[license-url]: https://github.com/abhaypaswan/lld-python/blob/master/LICENSE.txt
-[website-shield]: https://img.shields.io/badge/-Website-black.svg?style=for-the-badge&logo=fireship&colorB=555
-[website-url]: https://scale.algostreak.com
-[Python]: https://img.shields.io/badge/Python-20232A?style=for-the-badge&logo=python&logoColor=ffde57
-[Python-url]: https://python.org/
-[Flutter]: https://img.shields.io/badge/Flutter-20232A?style=for-the-badge&logo=flutter&logoColor=42A5F5
-[Flutter-url]: https://flutter.dev/
-[Dart]: https://img.shields.io/badge/Dart-20232A?style=for-the-badge&logo=dart&logoColor=00A758
-[Dart-url]: https://dart.dev/
+[license-url]: https://github.com/abhaypaswan/lld-python/blob/main/LICENSE
+[website-shield]: https://img.shields.io/badge/-goatengineer.com-black.svg?style=for-the-badge&logo=fireship&colorB=555
+[website-url]: https://goatengineer.com

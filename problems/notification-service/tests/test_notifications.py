@@ -1,7 +1,6 @@
 """Channels, the decorators around them, and what stacking order does."""
 
 import pytest
-
 from notification_service import (
     Channel,
     DeduplicatingChannel,
@@ -151,9 +150,7 @@ def test_retrying_gives_up_after_the_last_attempt(no_sleep):
 
 def test_a_first_time_success_is_not_retried(no_sleep):
     flaky = FlakyChannel(failures=0)
-    RetryingChannel(flaky, attempts=3, sleep=no_sleep).send(
-        Notification("alice@example.com", "Hi")
-    )
+    RetryingChannel(flaky, attempts=3, sleep=no_sleep).send(Notification("alice@example.com", "Hi"))
 
     assert flaky.calls == 1
 
@@ -209,9 +206,7 @@ def test_one_noisy_recipient_does_not_starve_the_others(clock):
 
 def test_a_failed_send_does_not_burn_the_budget(clock, no_sleep):
     """An outage must not consume a recipient's quota."""
-    channel = RateLimitedChannel(
-        FlakyChannel(always_fail=True), limit=2, window=60, clock=clock
-    )
+    channel = RateLimitedChannel(FlakyChannel(always_fail=True), limit=2, window=60, clock=clock)
     channel = RetryingChannel(channel, attempts=1, sleep=no_sleep)
     note = Notification("alice@example.com", "Hi")
 
@@ -276,9 +271,12 @@ def test_decorators_compose(clock, no_sleep):
     channel = RetryingChannel(
         RateLimitedChannel(
             DeduplicatingChannel(inner, window=300, clock=clock),
-            limit=5, window=60, clock=clock,
+            limit=5,
+            window=60,
+            clock=clock,
         ),
-        attempts=2, sleep=no_sleep,
+        attempts=2,
+        sleep=no_sleep,
     )
 
     channel.send(Notification("alice@example.com", "Hi"))
@@ -436,9 +434,9 @@ def test_a_rate_limited_send_is_suppressed_not_failed(clock):
 
 
 def test_a_transport_failure_is_retryable_not_suppressed(no_sleep):
-    result = RetryingChannel(
-        FlakyChannel(always_fail=True), attempts=1, sleep=no_sleep
-    ).send(Notification("alice@example.com", "Hi"))
+    result = RetryingChannel(FlakyChannel(always_fail=True), attempts=1, sleep=no_sleep).send(
+        Notification("alice@example.com", "Hi")
+    )
 
     assert not result.suppressed
 
@@ -462,7 +460,9 @@ def test_retry_does_not_re_attempt_a_deliberate_suppression(clock, no_sleep):
 def test_retry_still_retries_a_genuine_failure(no_sleep):
     flaky = FlakyChannel(failures=2)
 
-    assert RetryingChannel(flaky, attempts=3, sleep=no_sleep).send(
-        Notification("alice@example.com", "Hi")
-    ).delivered
+    assert (
+        RetryingChannel(flaky, attempts=3, sleep=no_sleep)
+        .send(Notification("alice@example.com", "Hi"))
+        .delivered
+    )
     assert flaky.calls == 3

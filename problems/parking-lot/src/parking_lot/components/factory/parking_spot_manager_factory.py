@@ -16,8 +16,7 @@ from ..strategy.parking_strategy import ParkingStrategy
 class ParkingSpotManagerFactory:
     def __init__(self, strategy: ParkingStrategy | None = None):
         self._managers: dict[VehicleType, ParkingSpotManager] = {
-            vehicle_type: ParkingSpotManager(vehicle_type, strategy)
-            for vehicle_type in VehicleType
+            vehicle_type: ParkingSpotManager(vehicle_type, strategy) for vehicle_type in VehicleType
         }
 
     def get_spot_manager(self, vehicle_type: str | VehicleType) -> ParkingSpotManager:

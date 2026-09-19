@@ -101,9 +101,7 @@ class ElevatorSystem:
                 return tick
             self.step()
 
-        raise RuntimeError(
-            f"Still busy after {max_ticks} ticks. Something is not making progress."
-        )
+        raise RuntimeError(f"Still busy after {max_ticks} ticks. Something is not making progress.")
 
     @property
     def is_idle(self) -> bool:

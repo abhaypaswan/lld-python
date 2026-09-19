@@ -99,8 +99,7 @@ class CoinBox:
             # leaves the machine exactly as it was. That ordering is the whole
             # reason the work happens on a copy.
             raise CannotMakeChange(
-                f"Cannot make {amount} from {self.total} in the box "
-                f"(short by {remaining})"
+                f"Cannot make {amount} from {self.total} in the box (short by {remaining})"
             )
 
         self._coins = available

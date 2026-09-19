@@ -1,6 +1,6 @@
 """Runnable demo: a weekend trip, four people, four ways to split.
 
-    python3 src/main.py
+python3 src/main.py
 """
 
 from __future__ import annotations
@@ -37,8 +37,7 @@ def main(argv: list[str] | None = None) -> int:
 
     manager = ExpenseManager()
     alice, bob, carol, dave = (
-        manager.add_user(User(name.lower(), name))
-        for name in ("Alice", "Bob", "Carol", "Dave")
+        manager.add_user(User(name.lower(), name)) for name in ("Alice", "Bob", "Carol", "Dave")
     )
     everyone = [alice, bob, carol, dave]
 

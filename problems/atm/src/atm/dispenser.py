@@ -64,8 +64,7 @@ class DenominationHandler:
 
         if self.next_handler is None:
             raise InsufficientCash(
-                f"Cannot make {amount} from the notes in this machine "
-                f"({remaining} left over)"
+                f"Cannot make {amount} from the notes in this machine ({remaining} left over)"
             )
 
         return {**plan, **self.next_handler.plan(remaining, inventory)}
@@ -81,10 +80,9 @@ class CashDispenser:
     @staticmethod
     def _build_chain() -> DenominationHandler:
         handlers = [
-            DenominationHandler(denomination)
-            for denomination in sorted(Denomination, reverse=True)
+            DenominationHandler(denomination) for denomination in sorted(Denomination, reverse=True)
         ]
-        for current, following in zip(handlers, handlers[1:]):
+        for current, following in zip(handlers, handlers[1:], strict=False):
             current.set_next(following)
         return handlers[0]
 
@@ -112,9 +110,7 @@ class CashDispenser:
 
         smallest = min(Denomination)
         if amount % int(smallest) != 0:
-            raise ValueError(
-                f"{amount} cannot be paid in notes; the smallest note is {smallest}"
-            )
+            raise ValueError(f"{amount} cannot be paid in notes; the smallest note is {smallest}")
         if amount > self.total:
             raise InsufficientCash(f"This machine holds {self.total}, less than {amount}")
 

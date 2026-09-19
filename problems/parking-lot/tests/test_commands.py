@@ -1,7 +1,6 @@
 """The console. Every command is exercised through ParkingLot.execute()."""
 
 import pytest
-
 from parking_lot.commands import CommandError
 
 HOUR = 3600

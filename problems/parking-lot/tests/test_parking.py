@@ -1,7 +1,6 @@
 """Parking, leaving, and the capacity bookkeeping in between."""
 
 import pytest
-
 from parking_lot import ParkingLot
 from parking_lot.components import ParkingLotFull
 from parking_lot.model import SpotAlreadyFree, SpotOccupied, VehicleType

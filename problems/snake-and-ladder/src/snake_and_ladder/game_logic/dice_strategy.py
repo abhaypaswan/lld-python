@@ -64,9 +64,7 @@ STRATEGIES: dict[str, type[DiceRollStrategy]] = {
 }
 
 
-def get_dice_strategy(
-    name: str, rng: random.Random | None = None
-) -> DiceRollStrategy:
+def get_dice_strategy(name: str, rng: random.Random | None = None) -> DiceRollStrategy:
     """Build the named strategy, or explain which names exist."""
     try:
         strategy_class = STRATEGIES[name]

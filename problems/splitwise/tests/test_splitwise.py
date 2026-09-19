@@ -1,7 +1,6 @@
 """Splits that add up, and settlements that clear."""
 
 import pytest
-
 from splitwise import (
     EqualSplit,
     ExactSplit,

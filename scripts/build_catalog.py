@@ -67,9 +67,7 @@ def load_problems() -> list[dict]:
             continue
         problems.append(json.loads(meta_path.read_text(encoding="utf-8")))
 
-    problems.sort(
-        key=lambda p: (DIFFICULTY_ORDER.get(p.get("difficulty", ""), 99), p["title"])
-    )
+    problems.sort(key=lambda p: (DIFFICULTY_ORDER.get(p.get("difficulty", ""), 99), p["title"]))
     return problems
 
 
@@ -98,9 +96,7 @@ def render_table(problems: list[dict]) -> str:
 
     for index, problem in enumerate(problems, start=1):
         slug = problem["slug"]
-        patterns = ", ".join(
-            PATTERN_NAMES.get(p, p) for p in problem.get("patterns", [])
-        )
+        patterns = ", ".join(PATTERN_NAMES.get(p, p) for p in problem.get("patterns", []))
         difficulty = DIFFICULTY_BADGE.get(
             problem.get("difficulty", ""), problem.get("difficulty", "")
         )
@@ -141,9 +137,7 @@ def main(argv: list[str]) -> int:
         return 1
 
     catalog = render_catalog(problems)
-    readme = splice_table(
-        README_PATH.read_text(encoding="utf-8"), render_table(problems)
-    )
+    readme = splice_table(README_PATH.read_text(encoding="utf-8"), render_table(problems))
 
     if check_only:
         stale = []
@@ -154,8 +148,7 @@ def main(argv: list[str]) -> int:
 
         if stale:
             print(
-                f"Out of date: {', '.join(stale)}.\n"
-                f"Run: python3 scripts/build_catalog.py",
+                f"Out of date: {', '.join(stale)}.\nRun: python3 scripts/build_catalog.py",
                 file=sys.stderr,
             )
             return 1

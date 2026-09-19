@@ -103,8 +103,13 @@ class MinimaxStrategy(MoveStrategy):
                 self._score_win(0)
                 if won
                 else self._minimax(
-                    board, symbol, opponent_symbol, depth=1, maximising=False,
-                    alpha=float("-inf"), beta=float("inf"),
+                    board,
+                    symbol,
+                    opponent_symbol,
+                    depth=1,
+                    maximising=False,
+                    alpha=float("-inf"),
+                    beta=float("inf"),
                 )
             )
             board.undo(cell)

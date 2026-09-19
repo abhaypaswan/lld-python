@@ -69,10 +69,7 @@ class Board:
         they are the same; for the pawn they are emphatically not, and using
         the wrong one puts kings in check from pawns directly in front of them.
         """
-        return any(
-            square in piece.attacks(self, origin)
-            for origin, piece in self.squares_with(by)
-        )
+        return any(square in piece.attacks(self, origin) for origin, piece in self.squares_with(by))
 
     def is_in_check(self, color: Color) -> bool:
         king_square = self.find_king(color)
@@ -138,9 +135,7 @@ class Board:
 
         if isinstance(piece, King) and abs(target.column - origin.column) == 2:
             kingside = target.column > origin.column
-            move.move_type = (
-                MoveType.CASTLE_KINGSIDE if kingside else MoveType.CASTLE_QUEENSIDE
-            )
+            move.move_type = MoveType.CASTLE_KINGSIDE if kingside else MoveType.CASTLE_QUEENSIDE
             move.rook_origin = Square(origin.row, 7 if kingside else 0)
             move.rook_target = Square(origin.row, 5 if kingside else 3)
             move.rook = self.piece_at(move.rook_origin)
@@ -173,8 +168,7 @@ class Board:
             if any(self.piece_at(Square(origin.row, c)) is not None for c in empty_columns):
                 continue
             if any(
-                self.is_attacked(Square(origin.row, c), king.color.opponent)
-                for c in path_columns
+                self.is_attacked(Square(origin.row, c), king.color.opponent) for c in path_columns
             ):
                 continue
 

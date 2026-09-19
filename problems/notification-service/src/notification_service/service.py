@@ -98,7 +98,9 @@ class NotificationService:
             if not channel.supports(notification):
                 results.append(
                     DeliveryResult(
-                        notification, channel_name, False,
+                        notification,
+                        channel_name,
+                        False,
                         f"{notification.recipient} is not a valid {channel_name} address",
                     )
                 )

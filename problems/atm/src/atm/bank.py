@@ -38,13 +38,10 @@ class Account:
         if amount <= 0:
             raise ValueError(f"Amount must be positive, got {amount}")
         if amount > self.balance:
-            raise InsufficientFunds(
-                f"Balance is {self.balance}, which will not cover {amount}"
-            )
+            raise InsufficientFunds(f"Balance is {self.balance}, which will not cover {amount}")
         if amount > self.remaining_today:
             raise InsufficientFunds(
-                f"Daily limit reached: {self.remaining_today} of "
-                f"{self.daily_limit} left today"
+                f"Daily limit reached: {self.remaining_today} of {self.daily_limit} left today"
             )
 
         self.balance -= amount

@@ -1,6 +1,6 @@
 """Runnable demo: the same traffic through all four algorithms.
 
-    python3 src/main.py
+python3 src/main.py
 """
 
 from __future__ import annotations

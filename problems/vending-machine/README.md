@@ -164,8 +164,8 @@ The interesting case is a machine that cannot make change. Look at the order
 inside `DispensingState.dispense`:
 
 ```python
-change = machine.coin_box.make_change(machine.balance - price)   # may raise
-item = machine.inventory.dispense(code)                          # only after
+change = machine.coin_box.make_change(machine.balance - price)  # may raise
+item = machine.inventory.dispense(code)  # only after
 ```
 
 Change comes out of the box **before** the item leaves the shelf. `make_change`

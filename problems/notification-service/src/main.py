@@ -1,6 +1,6 @@
 """Runnable demo for the notification service.
 
-    python3 src/main.py
+python3 src/main.py
 """
 
 from __future__ import annotations

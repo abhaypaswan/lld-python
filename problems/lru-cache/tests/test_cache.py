@@ -1,7 +1,6 @@
 """Eviction behaviour, which is the entire point of the problem."""
 
 import pytest
-
 from lru_cache import Cache
 from lru_cache.policies import LFUPolicy, get_policy
 
@@ -29,8 +28,8 @@ def test_the_least_recently_used_key_is_evicted():
     cache = Cache(2, "lru")
     cache.put("a", 1)
     cache.put("b", 2)
-    cache.get("a")          # a is now the most recent
-    cache.put("c", 3)       # so b goes
+    cache.get("a")  # a is now the most recent
+    cache.put("c", 3)  # so b goes
 
     assert "b" not in cache
     assert cache.get("a") == 1
@@ -66,7 +65,7 @@ def test_overwriting_counts_as_using_the_key():
     cache = Cache(2, "lru")
     cache.put("a", 1)
     cache.put("b", 2)
-    cache.put("a", 99)      # a is now the most recent
+    cache.put("a", 99)  # a is now the most recent
     cache.put("c", 3)
 
     assert "b" not in cache
@@ -90,7 +89,7 @@ def test_fifo_ignores_reads():
     cache = Cache(2, "fifo")
     cache.put("a", 1)
     cache.put("b", 2)
-    cache.get("a")          # makes no difference under FIFO
+    cache.get("a")  # makes no difference under FIFO
     cache.put("c", 3)
 
     assert "a" not in cache, "FIFO evicts by insertion order, not use"
@@ -105,7 +104,7 @@ def test_lfu_evicts_the_least_used_key():
     cache.put("a", 1)
     cache.put("b", 2)
     cache.get("a")
-    cache.get("a")          # a has been used 3 times, b once
+    cache.get("a")  # a has been used 3 times, b once
     cache.put("c", 3)
 
     assert "b" not in cache
@@ -115,7 +114,7 @@ def test_lfu_evicts_the_least_used_key():
 def test_lfu_breaks_frequency_ties_by_recency():
     cache = Cache(2, "lfu")
     cache.put("a", 1)
-    cache.put("b", 2)       # both on frequency 1
+    cache.put("b", 2)  # both on frequency 1
     cache.put("c", 3)
 
     assert "a" not in cache, "the older of the two tied keys should go"
@@ -129,7 +128,7 @@ def test_lfu_tracks_the_minimum_frequency_without_scanning():
 
     policy.record_access("a")
     policy.record_access("b")
-    policy.record_access("c")   # every key is now on frequency 2
+    policy.record_access("c")  # every key is now on frequency 2
 
     assert policy.evict() == "a", "the minimum should have stepped up to 2"
 

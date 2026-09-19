@@ -16,11 +16,16 @@ class InvalidOperation(Exception):
     """The machine cannot do that from the state it is in."""
 
 
-class ATMState(ABC):
+class ATMState(ABC):  # noqa: B024 - see below
     """One state. Everything is refused unless a subclass allows it."""
 
     name: str = "state"
     prompt: str = ""
+
+    #: No method here is abstract, which is the design and not an oversight.
+    #: Every action defaults to refusing, so a concrete state only has to write
+    #: the ones it permits. Marking them abstract would force each state to
+    #: reimplement every refusal it does not want to change.
 
     def __init__(self, atm):
         self.atm = atm
