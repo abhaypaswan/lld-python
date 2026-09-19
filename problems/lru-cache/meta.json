@@ -1,0 +1,27 @@
+{
+  "slug": "lru-cache",
+  "title": "Design an LRU Cache",
+  "difficulty": "medium",
+  "summary": "Build a fixed-capacity cache with O(1) get and put, backed by a hand-written doubly linked list, whose eviction rule swaps between LRU, LFU and FIFO without the cache learning what any of them mean.",
+  "tags": ["cache", "data-structures", "linked-list", "performance", "most-asked"],
+  "patterns": ["strategy", "template-method"],
+  "concepts": [
+    "Hash map plus doubly linked list for O(1) reordering",
+    "Sentinel nodes to remove null checks from pointer surgery",
+    "O(1) LFU via frequency buckets and an incrementally tracked minimum",
+    "Overwrite is not insert: why treating it as one empties the cache",
+    "Injecting the clock so TTL tests do not sleep"
+  ],
+  "entrypoint": "src/main.py",
+  "tests": "tests",
+  "estimatedMinutes": 45,
+  "askedAt": ["Google", "Amazon", "Meta", "Microsoft", "Atlassian"],
+  "diagram": { "mermaid": true },
+  "extensions": [
+    "Make the cache thread-safe, then shard it by key hash",
+    "Bound capacity by bytes rather than entry count",
+    "Add write-through to a backing store",
+    "Expire keys eagerly with a background sweep instead of on read",
+    "Support per-tenant caches under one global capacity limit"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "slug": "vending-machine",
+  "title": "Design a Vending Machine",
+  "difficulty": "medium",
+  "summary": "Model a vending machine as an explicit state machine where each state decides which actions it accepts, and where a machine that cannot make change leaves the item on the shelf and the buyer's money untouched.",
+  "tags": ["classic", "state-machine", "payments", "inventory", "most-asked"],
+  "patterns": ["state"],
+  "concepts": [
+    "Default-refuse base class so each state only writes what it supports",
+    "Ordering operations so a failure leaves no partial change behind",
+    "Escrow: refunding the coins inserted rather than making change",
+    "Integer money, and the limits of greedy change-making"
+  ],
+  "entrypoint": "src/main.py",
+  "tests": "tests",
+  "estimatedMinutes": 50,
+  "askedAt": ["Amazon", "Adobe", "Uber", "PhonePe"],
+  "diagram": { "mermaid": true },
+  "extensions": [
+    "Accept card payment alongside coins",
+    "Show an 'exact change only' indicator before money is inserted",
+    "Make the machine safe for concurrent buyers",
+    "Record a purchase history using Observer",
+    "Return the balance automatically after a period of inactivity"
+  ]
+}
