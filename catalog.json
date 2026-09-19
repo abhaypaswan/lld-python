@@ -2,8 +2,9 @@
   "$schema": "./schema/problem.schema.json",
   "version": 1,
   "source": "https://github.com/abhaypaswan/lld-python",
-  "count": 14,
+  "count": 16,
   "patterns": [
+    "builder",
     "chain-of-responsibility",
     "command",
     "composite",
@@ -11,8 +12,11 @@
     "facade",
     "factory-method",
     "iterator",
+    "mediator",
     "memento",
     "observer",
+    "proxy",
+    "repository",
     "singleton",
     "state",
     "strategy",
@@ -24,11 +28,13 @@
     "api",
     "beginner-friendly",
     "board-game",
+    "booking",
     "cache",
     "classic",
     "command-line",
     "commands",
     "concurrency",
+    "coupling",
     "data-structures",
     "dice",
     "distributed-systems",
@@ -44,8 +50,10 @@
     "ledger",
     "library-design",
     "linked-list",
+    "locking",
     "messaging",
     "minimax",
+    "moderation",
     "money",
     "most-asked",
     "observability",
@@ -54,6 +62,7 @@
     "performance",
     "pricing",
     "productivity",
+    "real-time",
     "recursion",
     "reliability",
     "resource-allocation",
@@ -202,6 +211,53 @@
         "Handle concurrent expense creation"
       ],
       "path": "problems/splitwise"
+    },
+    {
+      "slug": "chat-room",
+      "title": "Design a Chat Room",
+      "difficulty": "medium",
+      "summary": "Route messages through rooms so participants never hold references to each other, turning N-squared peer coupling into N — and put blocking, muting and moderation in the mediator, since each is a rule about a relationship neither party should own.",
+      "tags": [
+        "messaging",
+        "real-time",
+        "coupling",
+        "moderation",
+        "most-asked"
+      ],
+      "patterns": [
+        "mediator",
+        "observer",
+        "facade"
+      ],
+      "concepts": [
+        "Mediator versus Observer: coordination with logic, not plain broadcast",
+        "Why N-squared peer references become unmaintainable as membership changes",
+        "Rules about a relationship belong to neither participant",
+        "Keeping direct messages out of the room transcript",
+        "Returning a delivery result instead of silently dropping a message"
+      ],
+      "entrypoint": "src/main.py",
+      "tests": "tests",
+      "estimatedMinutes": 50,
+      "askedAt": [
+        "Slack",
+        "Microsoft",
+        "Amazon",
+        "Zoho",
+        "Atlassian"
+      ],
+      "diagram": {
+        "mermaid": true
+      },
+      "extensions": [
+        "Add threads and replies within a room",
+        "Add read receipts and typing indicators",
+        "Add message editing and deletion, and decide what history keeps",
+        "Scale rooms across servers with a message broker",
+        "Add end-to-end encryption, and work out what the mediator can still do",
+        "Add rate limiting per user to stop flooding"
+      ],
+      "path": "problems/chat-room"
     },
     {
       "slug": "logging-framework",
@@ -670,6 +726,57 @@
         "Add a clock with increment and flag-fall"
       ],
       "path": "problems/chess"
+    },
+    {
+      "slug": "movie-ticket-booking",
+      "title": "Design a Movie Ticket Booking System",
+      "difficulty": "hard",
+      "summary": "Stop two people buying the same seat by holding it under an expiring lock taken before payment and released after, with a builder assembling the booking, a repository hiding where shows live, and a caching proxy in front of it.",
+      "tags": [
+        "booking",
+        "concurrency",
+        "locking",
+        "pricing",
+        "most-asked"
+      ],
+      "patterns": [
+        "builder",
+        "repository",
+        "proxy",
+        "strategy",
+        "facade"
+      ],
+      "concepts": [
+        "Expiring seat locks as the answer to a double-booking race",
+        "Why payment must happen inside the lock, not before or after",
+        "All-or-nothing seat claims so a party is never split",
+        "Availability belongs to the show, not the seat",
+        "Proxy that caches reads and invalidates on write",
+        "Builder for an object assembled across several steps"
+      ],
+      "entrypoint": "src/main.py",
+      "tests": "tests",
+      "estimatedMinutes": 80,
+      "askedAt": [
+        "BookMyShow",
+        "Amazon",
+        "Uber",
+        "Flipkart",
+        "Swiggy",
+        "Google"
+      ],
+      "diagram": {
+        "mermaid": true
+      },
+      "extensions": [
+        "Move seat locks to Redis so the guarantee holds across processes",
+        "Add group booking with adjacent-seat allocation",
+        "Add coupons and loyalty points to the pricing chain",
+        "Add refunds with a time-based cancellation policy",
+        "Add waitlists that notify when a booking is cancelled",
+        "Handle a payment gateway timeout where the outcome is unknown"
+      ],
+      "path": "problems/movie-ticket-booking"
     },
     {
       "slug": "elevator-system",

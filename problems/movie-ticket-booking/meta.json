@@ -1,0 +1,29 @@
+{
+  "slug": "movie-ticket-booking",
+  "title": "Design a Movie Ticket Booking System",
+  "difficulty": "hard",
+  "summary": "Stop two people buying the same seat by holding it under an expiring lock taken before payment and released after, with a builder assembling the booking, a repository hiding where shows live, and a caching proxy in front of it.",
+  "tags": ["booking", "concurrency", "locking", "pricing", "most-asked"],
+  "patterns": ["builder", "repository", "proxy", "strategy", "facade"],
+  "concepts": [
+    "Expiring seat locks as the answer to a double-booking race",
+    "Why payment must happen inside the lock, not before or after",
+    "All-or-nothing seat claims so a party is never split",
+    "Availability belongs to the show, not the seat",
+    "Proxy that caches reads and invalidates on write",
+    "Builder for an object assembled across several steps"
+  ],
+  "entrypoint": "src/main.py",
+  "tests": "tests",
+  "estimatedMinutes": 80,
+  "askedAt": ["BookMyShow", "Amazon", "Uber", "Flipkart", "Swiggy", "Google"],
+  "diagram": { "mermaid": true },
+  "extensions": [
+    "Move seat locks to Redis so the guarantee holds across processes",
+    "Add group booking with adjacent-seat allocation",
+    "Add coupons and loyalty points to the pricing chain",
+    "Add refunds with a time-based cancellation policy",
+    "Add waitlists that notify when a booking is cancelled",
+    "Handle a payment gateway timeout where the outcome is unknown"
+  ]
+}

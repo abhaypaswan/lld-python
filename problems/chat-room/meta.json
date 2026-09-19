@@ -1,0 +1,28 @@
+{
+  "slug": "chat-room",
+  "title": "Design a Chat Room",
+  "difficulty": "medium",
+  "summary": "Route messages through rooms so participants never hold references to each other, turning N-squared peer coupling into N — and put blocking, muting and moderation in the mediator, since each is a rule about a relationship neither party should own.",
+  "tags": ["messaging", "real-time", "coupling", "moderation", "most-asked"],
+  "patterns": ["mediator", "observer", "facade"],
+  "concepts": [
+    "Mediator versus Observer: coordination with logic, not plain broadcast",
+    "Why N-squared peer references become unmaintainable as membership changes",
+    "Rules about a relationship belong to neither participant",
+    "Keeping direct messages out of the room transcript",
+    "Returning a delivery result instead of silently dropping a message"
+  ],
+  "entrypoint": "src/main.py",
+  "tests": "tests",
+  "estimatedMinutes": 50,
+  "askedAt": ["Slack", "Microsoft", "Amazon", "Zoho", "Atlassian"],
+  "diagram": { "mermaid": true },
+  "extensions": [
+    "Add threads and replies within a room",
+    "Add read receipts and typing indicators",
+    "Add message editing and deletion, and decide what history keeps",
+    "Scale rooms across servers with a message broker",
+    "Add end-to-end encryption, and work out what the mediator can still do",
+    "Add rate limiting per user to stop flooding"
+  ]
+}
