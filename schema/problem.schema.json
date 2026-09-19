@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/abhaypaswan/lld-python/schema/problem.schema.json",
+  "title": "LLD Problem",
+  "description": "Metadata for one low-level design problem. Every problems/<slug>/meta.json must validate against this. goatengineer.com ingests these directly, so a change here is a breaking change for the platform.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "slug",
+    "title",
+    "difficulty",
+    "summary",
+    "tags",
+    "patterns",
+    "entrypoint",
+    "tests"
+  ],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "description": "Directory name under problems/. Must match the folder it lives in.",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-facing name, e.g. 'Design a Parking Lot'.",
+      "minLength": 3,
+      "maxLength": 80
+    },
+    "difficulty": {
+      "type": "string",
+      "description": "Rough sizing for a 60-90 minute machine coding round.",
+      "enum": ["easy", "medium", "hard"]
+    },
+    "summary": {
+      "type": "string",
+      "description": "One or two sentences. This is the card blurb on goatengineer.com, so it has to stand alone without the full statement.",
+      "minLength": 40,
+      "maxLength": 400
+    },
+    "tags": {
+      "type": "array",
+      "description": "Free-form topic tags used for filtering and search.",
+      "minItems": 1,
+      "items": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+      "uniqueItems": true
+    },
+    "patterns": {
+      "type": "array",
+      "description": "Design patterns the reference implementation actually uses. Do not list a pattern the code does not contain.",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": [
+          "abstract-factory",
+          "adapter",
+          "builder",
+          "chain-of-responsibility",
+          "command",
+          "composite",
+          "decorator",
+          "facade",
+          "factory-method",
+          "iterator",
+          "mediator",
+          "memento",
+          "observer",
+          "proxy",
+          "repository",
+          "singleton",
+          "state",
+          "strategy",
+          "template-method",
+          "visitor"
+        ],
+        "uniqueItems": true
+      }
+    },
+    "concepts": {
+      "type": "array",
+      "description": "Non-pattern ideas the problem exercises: concurrency, SOLID principles, data structure choices.",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "entrypoint": {
+      "type": "string",
+      "description": "Runnable demo, relative to the problem directory.",
+      "pattern": "^src/.*\\.py$"
+    },
+    "tests": {
+      "type": "string",
+      "description": "Test directory, relative to the problem directory.",
+      "pattern": "^tests/?$"
+    },
+    "estimatedMinutes": {
+      "type": "integer",
+      "description": "How long a candidate should expect to spend implementing this from scratch.",
+      "minimum": 15,
+      "maximum": 240
+    },
+    "askedAt": {
+      "type": "array",
+      "description": "Companies known to ask this in machine coding rounds. Keep it to ones actually reported, not guesses.",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "diagram": {
+      "type": "object",
+      "description": "Where the class diagram lives. Mermaid is the source of truth for new problems; the image fields exist for the two originals that predate it.",
+      "additionalProperties": false,
+      "properties": {
+        "mermaid": {
+          "type": "boolean",
+          "description": "True when README.md carries a ```mermaid class diagram."
+        },
+        "light": { "type": "string", "pattern": "^assets/.*\\.(png|svg)$" },
+        "dark": { "type": "string", "pattern": "^assets/.*\\.(png|svg)$" },
+        "svg": { "type": "string", "pattern": "^assets/.*\\.svg$" }
+      }
+    },
+    "extensions": {
+      "type": "array",
+      "description": "Follow-up requirements an interviewer is likely to bolt on once the base design works.",
+      "items": { "type": "string" }
+    }
+  }
+}

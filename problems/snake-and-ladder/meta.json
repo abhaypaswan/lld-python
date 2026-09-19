@@ -1,0 +1,30 @@
+{
+  "slug": "snake-and-ladder",
+  "title": "Snake and Ladder",
+  "difficulty": "easy",
+  "summary": "Build a turn-based Snake and Ladder game where the die can be swapped between fair and crooked without touching the game loop, and the board refuses layouts where one jump chains into another.",
+  "tags": ["game", "board-game", "dice", "turn-based", "beginner-friendly"],
+  "patterns": ["strategy"],
+  "concepts": [
+    "Dependency injection for randomness",
+    "Validating invariants at construction rather than at use",
+    "Returning values instead of printing, so the domain is testable"
+  ],
+  "entrypoint": "src/main.py",
+  "tests": "tests",
+  "estimatedMinutes": 45,
+  "askedAt": ["Amazon", "Flipkart", "Swiggy"],
+  "diagram": {
+    "mermaid": true,
+    "light": "assets/class-diagram-light.png",
+    "dark": "assets/class-diagram-dark.png",
+    "svg": "assets/class-diagram.svg"
+  },
+  "extensions": [
+    "Rolling a six earns the player another turn",
+    "Place snakes and ladders randomly at setup while keeping the no-chain rule",
+    "Support rolling more than one die per turn",
+    "Undo the last move",
+    "Save and resume a game in progress"
+  ]
+}

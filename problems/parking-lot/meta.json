@@ -1,0 +1,32 @@
+{
+  "slug": "parking-lot",
+  "title": "Design a Parking Lot",
+  "difficulty": "medium",
+  "summary": "Assign spots to arriving vehicles by a pluggable allocation strategy, charge for the stay on exit by a separate pricing strategy, and drive the whole thing from a command console where adding an operation never edits an existing one.",
+  "tags": ["classic", "resource-allocation", "pricing", "command-line", "most-asked"],
+  "patterns": ["strategy", "factory-method", "command", "facade"],
+  "concepts": [
+    "Subclass versus constructor argument: when a difference is data, not behaviour",
+    "Deriving counts instead of maintaining a parallel counter",
+    "Injecting the clock so duration-based logic is testable",
+    "Open/closed dispatch through a command registry"
+  ],
+  "entrypoint": "src/main.py",
+  "tests": "tests",
+  "estimatedMinutes": 60,
+  "askedAt": ["Amazon", "Google", "Uber", "Flipkart", "Microsoft", "Swiggy"],
+  "diagram": {
+    "mermaid": true,
+    "light": "assets/class-diagram-light.png",
+    "dark": "assets/class-diagram-dark.png",
+    "svg": "assets/class-diagram.svg"
+  },
+  "extensions": [
+    "Make the lot safe for concurrent gates",
+    "Support multiple floors",
+    "Handle vehicles that occupy more than one spot",
+    "Allow a spot to be reserved ahead of arrival",
+    "Add surge pricing at peak hours by decorating a pricing strategy",
+    "Persist the lot state across restarts"
+  ]
+}

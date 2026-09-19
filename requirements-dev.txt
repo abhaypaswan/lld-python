@@ -1,0 +1,4 @@
+# Everything needed to run the tests and the repo's own checks.
+# The problem implementations themselves use only the standard library.
+pytest>=8.0
+jsonschema>=4.21

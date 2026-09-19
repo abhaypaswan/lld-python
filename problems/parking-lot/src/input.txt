@@ -1,0 +1,17 @@
+# A short tour of the lot. Lines starting with # are ignored.
+status
+park_vehicle ABC-123 Red TwoWheeler
+park_vehicle DEF-456 White FourWheeler
+park_vehicle GHI-789 White HUV
+list_all_parked_vehicles
+get_vehicles_by_color White
+get_vehicles_by_registration_no ABC-123
+get_vehicles_by_registration_no ZZZ-000
+status
+unpark_vehicle ABC-123
+list_all_parked_vehicles
+add_parking_spot 99 TwoWheeler
+remove_parking_spot 99 TwoWheeler
+free_parking_spot 10 FourWheeler
+status
+exit

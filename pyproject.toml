@@ -1,0 +1,14 @@
+[tool.pytest.ini_options]
+# Tests live next to the problem they cover, not in a central tests/ tree, so
+# that a problem directory stays a self-contained thing you can read top to
+# bottom. conftest.py at the repo root is what makes them importable.
+testpaths = ["problems"]
+python_files = ["test_*.py"]
+addopts = "-q --strict-markers"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
